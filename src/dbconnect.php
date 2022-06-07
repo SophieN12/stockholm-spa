@@ -1,10 +1,11 @@
 <?php
+ini_set('display_errors', 1);
 
-$host 	  = '';
-$database = '';
-$user     = '';
-$password = '';
-$charset  = 'utf8mb4';
+$host       = "localhost";
+$database   = "stockholm-spa";
+$user       = "root";
+$password   = "root";
+$charset    = "utf8mb4";
 
 $dns 	  = "mysql:host={$host};dbname={$database};charset={$charset}";
 
@@ -27,7 +28,7 @@ $options = [
 // Upprätta en DB koppling
 try {
 	// Försök köra koden i try-blocket
-	$dbconnect = new PDO($dns, $user, $password, $options);
+	$pdo = new PDO($dns, $user, $password, $options);
 } catch (\PDOException $e) {
 	// Catch-blocket körs om något gick fel i try-blocket
 	// echo $e->getMessage();

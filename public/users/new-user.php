@@ -29,7 +29,7 @@
     $emailError         = "";
 
     if (isset($_POST['createBtn'])) {
-        $confirmPassword = $_POST['confirmPassword'];
+        $confirmPassword = trim($_POST['confirmPassword']);
 
         if (empty($_POST['first_name'])) {
             $errorMessages['first_name'] = "Please enter your first name";
@@ -170,40 +170,40 @@
         <p id="successMessage"><?=$successMessage?></p>
         <form action="" method="POST">
             <label for="first_name">First Name</label><br>
-            <input type="text" name="first_name" value="<?=$first_name?>"><br>
+            <input type="text" name="first_name" value="<?=htmlentities($first_name)?>"><br>
             <p class="error"><?=$errorMessages['first_name'];?></p>
             
             <label for="last_name">Last Name</label><br>
-            <input type="text" name="last_name" value="<?=$last_name?>"><br>
+            <input type="text" name="last_name" value="<?=htmlentities($last_name)?>"><br>
             <p class="error"><?=$errorMessages['last_name'];?></p>
             
             <label for="street">Street</label><br>
-            <input type="text" name="street" value="<?=$street?>"><br>
+            <input type="text" name="street" value="<?=htmlentities($street)?>"><br>
             <p class="error"><?=$errorMessages['street'];?></p>
             
             <label for="postal_code">Postal Code</label><br>
-            <input type="text" name="postal_code" value="<?=$postal_code?>"><br>
+            <input type="text" name="postal_code" value="<?=htmlentities($postal_code)?>"><br>
             <p class="error"><?=$errorMessages['postal_code'];?></p>
             
             <label for="email">Email</label><br>
-            <input type="text" name="email" value="<?=$email?>"><br>
+            <input type="text" name="email" value="<?=htmlentities($email)?>"><br>
             <p class="error"><?=$errorMessages['email'];?></p>
             <p class="error"><?=$errorMessages['emailError'];?></p>
             
             <label for="password">Password</label><br>
-            <input type="password" name="password" value="<?=$password?>"><br>
+            <input type="password" name="password" value="<?=htmlentities($password)?>"><br>
             <p class="error"><?=$errorMessages['password'];?></p>
             
             <label for="confirmPassword">Confirm password</label><br>
-            <input type="password" name="confirmPassword" value="<?=$confirmPassword?>"><br>
+            <input type="password" name="confirmPassword" value="<?=htmlentities($confirmPassword)?>"><br>
             <p class="error"><?=$errorMessages['confirmPassword'];?></p>
             
             <label for="phone">Phone number</label><br>
-            <input type="text" name="phone" value="<?=$phone?>"><br>
+            <input type="text" name="phone" value="<?=htmlentities($phone)?>"><br>
             <p class="error"><?=$errorMessages['phone'];?></p>
             
             <label for="city">City</label><br>
-            <input type="text" name="city" value="<?=$city?>"><br>
+            <input type="text" name="city" value="<?=htmlentities($city)?>"><br>
             <p class="error"><?=$errorMessages['city'];?></p>
             
             <label for="country">Country</label><br>
