@@ -69,6 +69,7 @@
     <div id="container">
         <h1>Login</h1>
         <p><?=$errorMessages['incorrectLogin']?></p>
+        <p><?=$errorMessages['mustLogin']?></p>
         <form action="" method="POST">
             <label for="email">Email</label><br>
             <input type="text" name="email" value="<?=htmlentities($email)?>"><br><br>
