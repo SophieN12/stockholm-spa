@@ -1,8 +1,6 @@
 <?php 
     $pageTitle = "Add Product";
-
-    require('../../../src/dbconnect.php');
-    require('../../../src/functions.php');
+    require('../../../src/config.php');
 
     $message = "";
     $imgUrl = "product-images/placeholder.png";
@@ -25,7 +23,7 @@
             $path 		    = "product-images/";
 
 		    $newFilePath = $path . $fileName; 
-            
+
             $allowedFileTypes = [
                 'image/png',
                 'image/jpeg',
@@ -53,17 +51,26 @@
         } 	
 
         if (empty($title) || empty($price) || empty($description) || empty($stock)) {
-            $errorMessages .= generateErrorMessages($title, "Title");
-            $errorMessages .= generateErrorMessages($price, "Price");
-            $errorMessages .= generateErrorMessages($stock, "Stock");
-            $errorMessages .= generateErrorMessages($description, "Description");
+            $errorMessages .= generateErrorMessageForEmptyField($title, "Title");
+            $errorMessages .= generateErrorMessageForEmptyField($price, "Price");
+            $errorMessages .= generateErrorMessageForEmptyField($stock, "Stock");
+            $errorMessages .= generateErrorMessageForEmptyField($description, "Description");
+        }
+
+        if (is_numeric($price) === false || is_numeric($stock) === false) {
+            if (is_numeric($price) === false ){
+                $errorMessages .= '<li> Wrong input for <strong> Price </strong> (Needs to be a number). </li>';
+            }
+            if (is_numeric($stock) === false ){
+                $errorMessages .= '<li> Wrong input for <strong> Stock </strong> (Needs to be a number). </li>';
+            }
         }
 
         if (!empty($errorMessages)) {
             $message .= '<div class="alert alert-danger" ><ul>'. $errorMessages. '</ul></div> ' ;
         
         } else {
-            addProduct($title, $description, $price, $stock, $imgUrl);
+            $productsDbHandler -> addProduct($title, $description, $price, $stock, $imgUrl);
             redirect('manage-products.php');
         }
     }    
@@ -76,7 +83,6 @@
         <br>
 
         <?= $message ?>
-        <?= $errorMessage ?>
 
         <img src= <?= $imgUrl ?> alt="" height="300px">
 

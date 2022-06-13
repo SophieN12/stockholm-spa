@@ -1,7 +1,6 @@
 <?php 
     $pageTitle = "Update Product";
-    require('../../../src/dbconnect.php');
-    require('../../../src/functions.php');
+    require('../../../src/config.php');
     
     $message       = "";
     $errorMessages = "";
@@ -29,11 +28,11 @@ if (isset($_POST['updateProductBtn'])) {
 		
 		$isFileTypeAllowed = array_search($fileType, $allowedFileTypes, true);
 		if (!$isFileTypeAllowed) {
-			$errorMessages .= "Invalid file type. Accepted file types are jpeg, png, gif. <br>";
+			$errorMessages .= "<li> Invalid file type. Accepted file types are jpeg, png, gif. </li>";
 		}
 
 		if ($_FILES['upfile']['size'] > 1000000) {  // Allows only files under 1 mbyte
-			$errorMessages .= 'Exceeded filesize limit. <br>';
+			$errorMessages .= '<li> Exceeded filesize limit. </li>';
 		}
 
 		if (empty($errorMessages)) {
@@ -42,7 +41,7 @@ if (isset($_POST['updateProductBtn'])) {
 			if ($isTheFileUploaded) {
 				$imgUrl = $newFilePath;
 			} else {
-				$error = "Could not upload the file";
+				$errorMessages .= "<li> Could not upload the file </li>";
 			}
 		}
 	} else {
@@ -50,22 +49,30 @@ if (isset($_POST['updateProductBtn'])) {
     }
 
     if (empty($title) || empty($price) || empty($description) || empty($stock)) {
-        $errorMessages .= generateErrorMessages($title, "Title");
-        $errorMessages .= generateErrorMessages($price, "Price");
-        $errorMessages .= generateErrorMessages($stock, "Stock");
-        $errorMessages .= generateErrorMessages($description, "Description");
+        $errorMessages .= generateErrorMessageForEmptyField($title, "Title");
+        $errorMessages .= generateErrorMessageForEmptyField($price, "Price");
+        $errorMessages .= generateErrorMessageForEmptyField($stock, "Stock");
+        $errorMessages .= generateErrorMessageForEmptyField($description, "Description");
     } 
 
-    if (!empty($error)) {
+    if (is_numeric($price) === false || is_numeric($stock) === false) {
+        if (is_numeric($price) === false ){
+            $errorMessages .= '<li> Wrong input for <strong> Price </strong> (Needs to be a number). </li>';
+        }
+        else {
+            $errorMessages .= '<li> Wrong input for <strong> Stock </strong> (Needs to be a number). </li>';
+        }
+    }
+
+    if (!empty($errorMessages)) {
         $message .= '<div class="alert alert-danger" ><ul>'. $errorMessages. '</ul></div> ' ;
 
-	}  else {
-        updateProduct($_POST['productId'], $title, $description, $price, $stock, $imgUrl);
+	} else {
+        $productsDbHandler -> updateProduct($_POST['productId'], $title, $description, $price, $stock, $imgUrl);
         redirect("manage-products.php");
-
     }
 }    
-    $product = fetchSpecificProduct($_GET['productId'])
+    $product =  $productsDbHandler -> fetchSpecificProduct($_GET['productId'])
 
 ?>
 
@@ -77,7 +84,6 @@ if (isset($_POST['updateProductBtn'])) {
 
         <form action="" method="post" enctype="multipart/form-data">
             <?= $message ?>
-            <?= $errorMessages ?>
 
             <input type="hidden" name="productId" value="<?= $product['id']?>">
 
