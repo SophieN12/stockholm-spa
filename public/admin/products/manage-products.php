@@ -1,13 +1,12 @@
 <?php 
     $pageTitle = "Admin Page";
-    require('../../../src/dbconnect.php');
-    require('../../../src/functions.php');
+    require('../../../src/config.php');
 
     if (isset($_POST["deleteProductBtn"])){
-        deleteProduct($_POST['productId']);
+		$productsDbHandler -> deleteProduct($_POST['productId']);
     }
 
-	$products = fetchAllProducts();
+	$products = $productsDbHandler->fetchAllProducts();
 ?>
 
 <?php include("../layout/header.php") ?>
