@@ -2,8 +2,8 @@
 require('../src/dbconnect.php');
 
 $sql = "
-SELECT * FROM products
-WHERE id = :id;
+    SELECT * FROM products
+    WHERE id = :id;
 ";
 
 $stmt = $pdo->prepare($sql);
@@ -21,9 +21,10 @@ $product = $stmt->fetch();
 <html>
 <head>
 	<title>Product</title>
+    <link rel="stylesheet" href="../css/products.css">
 </head>
 <body>
-        <img src="<?= htmlentities($product['img_url']) ?>">
+        <img src="<?= htmlentities($product['img_url']) ?>" class="img-large">
         <h2><?= htmlentities($product['title']) ?></h2>
         <p><?= htmlentities($product['price']) ?></p>
 </body>
