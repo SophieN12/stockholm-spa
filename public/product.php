@@ -1,20 +1,6 @@
 <?php
-require('../src/dbconnect.php');
-
-$sql = "
-    SELECT * FROM products
-    WHERE id = :id;
-";
-
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':id', $_GET['product']);
-$stmt->execute();
-$product = $stmt->fetch();
-
-
-// echo "<pre>";
-// print_r($_POST);
-// echo "</pre>";
+    require('../src/config.php');
+    $product = $productsDbHandler->fetchProduct($_GET['productId']);
 ?>
 
 <!DOCTYPE html>

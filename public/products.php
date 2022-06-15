@@ -1,17 +1,6 @@
 <?php
-require('../src/dbconnect.php');
-
-$sql = "
-    SELECT *
-    FROM products
-";
-    
-$stmt = $pdo->query($sql);
-$products = $stmt->fetchAll();
-
-// echo "<pre>";
-// print_r($_POST);
-// echo "</pre>";
+    require('../src/config.php');
+    $products = $productsDbHandler->fetchAllProducts();
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +15,7 @@ $products = $stmt->fetchAll();
     <ul id="product-grid">
         <?php foreach ($products as $product) { ?>
             <li>
-                <a href="product.php?product=<?= $product['id'] ?>">
+                <a href="product.php?productId=<?= $product['id'] ?>">
                     <img src="<?= htmlentities($product['img_url']) ?>" class="grid-img">
                     <h2><?= htmlentities($product['title']) ?></h2>
                     <p><?= htmlentities($product['price']) ?> SEK</p>
