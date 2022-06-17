@@ -73,25 +73,30 @@ if (isset($_POST['updateProductBtn'])) {
     }
 }    
     $product =  $productsDbHandler -> fetchSpecificProduct($_GET['productId'])
-
 ?>
 
-<?php include('../layout/header.php'); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <?= $pageTitle ?></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/products.css"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+</head>
+<body>
 
     <div class="container mt-3">
-        <h1>Update Product</h1>
+        <h1 class="page-header-products center">Update Product</h1>
         <br>
 
-        <form action="" method="post" enctype="multipart/form-data">
-            <?= $message ?>
+        <?= $message ?>
+        <form class="input-form" action="" method="post" enctype="multipart/form-data">
+            <img src=<?=$product['img_url'] ?> class="mb-3" height= "400px">
 
             <input type="hidden" name="productId" value="<?= $product['id']?>">
-
-            <div>
-                <img src= <?=$product['img_url'] ?> alt="" height= "400px">
-                <input type="hidden" value=<?=$product['img_url']?> name= "currentImg">
-                <input type="file" class="form-control" id="inputGroupFile02" name="uploadedFile">
-            </div>
 
             <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="floatingInput" value="<?=htmlentities($product['title'])?>" name= "title">
@@ -112,11 +117,17 @@ if (isset($_POST['updateProductBtn'])) {
                 <input type="text" class="form-control" id="floatingInput" value="<?=htmlentities($product['stock'])?> "name= "stock">
                 <label for="floatingInput">Stock *</label>
             </div>
+
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupFile01">Product image</label>
+                <input type="hidden" value=<?=$product['img_url']?> name="currentImg">
+                <input type="file" class="form-control" id="inputGroupFile02" name="uploadedFile">
+            </div>
             
-            <div class="d-grid gap-2 col-6 mx-auto ">
-                <input type="submit" class="btn btn-primary" name="updateProductBtn" value="Update">
+            <div class="d-grid gap-3 col-6 mx-auto ">
+                <input type="submit" class="btn" name="updateProductBtn" value="Update">
                 
-                <a href="manage-products.php" class="btn btn-secondary">Cancel</a>
+                <a href="manage-products.php" class="btn btn-secondary cancel-btn">Cancel</a>
             </div>
         </form>
     </div>

@@ -57,7 +57,7 @@
             $errorMessages .= generateErrorMessageForEmptyField($description, "Description");
         }
 
-        if (is_numeric($price) === false || is_numeric($stock) === false) {
+        if (is_numeric($price) === false && !empty($price) || is_numeric($stock) === false && !empty($stock)) {
             if (is_numeric($price) === false ){
                 $errorMessages .= '<li> Wrong input for <strong> Price </strong> (Needs to be a number). </li>';
             }
@@ -76,31 +76,40 @@
     }    
 ?>
 
-<?php include('../layout/header.php');?> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <?= $pageTitle ?></title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/products.css"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+</head>
+<body>
 
     <div class="container mt-3">
-        <h1>Add new product</h1>
+        <h1 class="page-header-products center" >Add new product</h1>
         <br>
 
         <?= $message ?>
 
-        <img src= <?= $imgUrl ?> alt="" height="300px">
-
-        <form action="" method="post" enctype="multipart/form-data">
-            <input type="file" class="form-control" id="inputGroupFile02" name="uploadedFile">
+        <form class="input-form" action="" method="post" enctype="multipart/form-data">
+            <img src= <?= $imgUrl ?> class="mb-3"height="300px">
 
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Product name" id="floatingInput" name= "title"  value=<?= htmlentities($title)?>>
+                <input type="text" class="form-control" placeholder="Product name" id="floatingInput" name= "title" value= <?=htmlentities($title)?>>
                 <label for="floatingInput">Product name *</label>
             </div>  
             
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Price" id="floatingInput" name= "price" value=<?= htmlentities($price)?>>
+                <input type="text" class="form-control" placeholder="Price" id="floatingInput" name= "price" value= <?=htmlentities($price)?>>
                 <label for="floatingInput">Price (KR) *</label>
             </div>
             
             <div class="form-floating mb-3">
-                <textarea class="form-control" id="floatingTextarea2" style="height: 200px" name="description"><?=htmlentities($product['description'])?></textarea>
+                <textarea class="form-control" id="floatingTextarea2" style="height: 200px" name="description"> <?=htmlentities($product['description'])?></textarea>
                 <label for="floatingTextarea2">Description *</label>
             </div>
 
@@ -108,11 +117,16 @@
                 <input type="text" class="form-control" placeholder="Stock" id="floatingInput" name= "stock" value= <?=htmlentities($stock)?>>
                 <label for="floatingInput">Stock *</label>
             </div> 
-        
-            <div class="d-grid gap-2 col-6 mx-auto ">
-                <input type="submit" class="btn btn-primary" name="addProductBtn" value="Add">
 
-                <a href="manage-products.php" class="btn btn-secondary">Cancel</a>
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupFile01">Product image</label>
+                <input type="file" class="form-control" id="inputGroupFile02" name="uploadedFile">
+            </div>
+        
+            <div class="d-grid gap-3 col-6 mx-auto ">
+                <input type="submit" class="btn" name="addProductBtn" value="Add">
+
+                <a href="manage-products.php" class="btn btn-secondary cancel-btn">Cancel</a>
             </div>
         </form>
     </div>
