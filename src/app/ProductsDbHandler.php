@@ -7,15 +7,16 @@ class ProductsDbHandler {
 
     public function fetchAllProducts() {
         $sql = "SELECT * FROM products;";
-        $stmt = $this->pdo->query($sql);
+        $stmt = $this->pdo->prepare($sql);
+        $stmt ->execute();
 
         return $stmt->fetchAll();
     }
 
     public function fetchSpecificProduct($productId) {
         $sql = "
-                SELECT * FROM products
-                WHERE id = :id
+            SELECT * FROM products
+            WHERE id = :id
         ";
         $stmt = $this->pdo->prepare($sql);
         $stmt -> bindParam(':id', $productId);
@@ -49,7 +50,7 @@ class ProductsDbHandler {
         $stmt->execute();
     }
 
-    public function updateProduct($id, $title, $description, $price, $stock, $imgUrl) {
+    public function updateProduct($productId, $title, $description, $price, $stock, $imgUrl) {
         $sql = "
                 UPDATE products
                 SET title = :title, description = :description, price = :price, stock = :stock, img_url = :img_url
@@ -57,7 +58,7 @@ class ProductsDbHandler {
         ";
 
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id', $productId);
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':price', $price);
