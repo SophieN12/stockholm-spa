@@ -9,3 +9,8 @@ define('ROOT_PATH', '..' . __DIR__ . '/'); // path to 'my-page-3/'
 define('SRC_PATH',  __DIR__ . '/'); // path to 'my-page-3/src/'
 
 // Include functions and classes
+
+require(SRC_PATH . '/dbconnect.php');
+require(SRC_PATH . '/app/common_functions.php');
+require(SRC_PATH . '/app/ProductsDbHandler.php');
+$productsDbHandler = new ProductsDbHandler($pdo);
