@@ -12,4 +12,4 @@ define('SRC_PATH',  __DIR__ . '/'); // path to 'my-page-3/src/'
 require(SRC_PATH . '/dbconnect.php');
 require(SRC_PATH . '/app/productsDbHandler.php');
 
-$productsDBHandler = new productsDbHandler($pdo);
+$productsDbHandler = new productsDbHandler($pdo);
