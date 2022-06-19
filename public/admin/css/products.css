@@ -35,7 +35,6 @@ h1 a:hover{
 	text-align: center;
 }
 
-
 #products-tbl { 
 	border-collapse: collapse; 
 	width: 100%;
@@ -90,29 +89,6 @@ h1 a:hover{
 	min-width: 400px;
 }
 
-#dropdown-menu{
-	width: 100%;
-}
-
-.search-list-items{
-	display: grid;
-	grid-template-columns: 100px auto;
-	height: 100px;
-    padding: 10px;
-    margin: 0 auto;
-    cursor: pointer;
-	align-items: center;
-	width: 100%;
-}
-
-.search-list-items img{
-	width: 80px;
-	justify-self: center;
-}
-
-.search-list-items:hover{
-	background-color: var(--sand);
-}
 
 input[type=submit], 
 #add-product-btn,
@@ -133,12 +109,12 @@ input[type=submit],
 }
 
 input[type=submit][value="Delete"] {
-	background-color: lightcoral;
+	background-color: #D16D6D;
 }
 
 input[type=submit][value="Delete"]:hover {
-	background-color: lightcoral;
-    box-shadow: 0px 0px 0px 4px rgba(240, 128, 128, 0.482);
+	background-color: #D16D6D;
+    box-shadow: 0px 0px 0px 4px #d16d6d92;
 
 }
 
@@ -152,7 +128,7 @@ input[type=submit][value="Delete"]:hover {
 input[type=submit]:hover {
 	background-color: var(--green);
 	color: var(--white);	
-    box-shadow: 0px 0px 0px 4px #42424262;
+    box-shadow: 0px 0px 0px 4px #7c8e748d;
 }
 
 #search-and-add-div{
@@ -163,17 +139,18 @@ input[type=submit]:hover {
 }
 
 .cancel-btn{
-	background-color: var(--black);
-	color: var(--white);
-	border: none;
+	background-color: var(--white);
+	color: var(--green);
+	border: 2px solid var(--green);
 	padding: 10px 0px;
 	border-radius: 5px;
 }
 
 .cancel-btn:hover{ 
-	background-color: var(--black);
-	color: var(--white);
-    box-shadow: 0px 0px 0px 4px #42424262;
+	background-color: var(--white);
+	color: var(--green);
+	border: 2px solid var(--green);
+    box-shadow: 0px 0px 0px 4px #7c8e748d;
 }
 
 .input-form{
@@ -182,8 +159,22 @@ input[type=submit]:hover {
 	min-width: 750px;
 }
 
-.input-form img {
+.product-img-form {
 	display: block;
 	margin: 0 auto;
 	max-height: 270px;
+}
+
+.messages-div{
+	width: 750px;
+	margin: 0px auto 30px auto;
+}
+
+.messages-div ul{
+	margin-bottom: 0px;
+}
+
+.form-background {
+	padding: 35px 0px 20px 0px;
+	background-color: var(--sand);
 }
