@@ -4,7 +4,6 @@
     
     $message       = "";
     $errorMessages = "";
-    $imgUrl        = "";
 
 if (isset($_POST['updateProductBtn'])) {
     $title       = trim($_POST['title']);
@@ -27,7 +26,7 @@ if (isset($_POST['updateProductBtn'])) {
 		];
 		
 		$isFileTypeAllowed = array_search($fileType, $allowedFileTypes, true);
-		if (!$isFileTypeAllowed) {
+		if ($isFileTypeAllowed === false) {
 			$errorMessages .= "<li> Invalid file type. Accepted file types are jpeg, png, gif. </li>";
 		}
 
@@ -65,7 +64,7 @@ if (isset($_POST['updateProductBtn'])) {
     }
 
     if (!empty($errorMessages)) {
-        $message .= '<div class="alert alert-danger" ><ul>'. $errorMessages. '</ul></div> ' ;
+        $message .= '<div class="alert alert-danger messages-div"><ul>'. $errorMessages. '</ul></div> ' ;
 
 	} else {
         $productsDbHandler -> updateProduct($_POST['productId'], $title, $description, $price, $stock, $imgUrl);
@@ -89,47 +88,50 @@ if (isset($_POST['updateProductBtn'])) {
 <body>
 
     <div class="container mt-3">
-        <h1 class="page-header-products center">Update Product</h1>
+        <h1 class="center">Update Product</h1>
         <br>
 
         <?= $message ?>
-        <form class="input-form" action="" method="post" enctype="multipart/form-data">
-            <img src=<?=$product['img_url'] ?> class="mb-3" height= "400px">
+        
+        <img src=<?=$product['img_url'] ?>  class="mb-3 product-img-form" height= "400px">
+        
+        <div class="form-background">
+            <form class="input-form" action="" method="post" enctype="multipart/form-data">
 
-            <input type="hidden" name="productId" value="<?= $product['id']?>">
+                <input type="hidden" name="productId" value="<?= $product['id']?>">
 
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" value="<?=htmlentities($product['title'])?>" name= "title">
-                <label for="floatingInput">Product name *</label>
-            </div>
-            
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" value="<?=htmlentities($product['price'])?> "name= "price">
-                <label for="floatingInput">Price (KR) *</label>
-            </div>
-            
-            <div class="form-floating mb-3">
-                <textarea class="form-control" id="floatingTextarea2" style="height: 200px" name="description"><?=htmlentities($product['description'])?></textarea>
-                <label for="floatingTextarea2">Description *</label>
-            </div>
-
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="floatingInput" value="<?=htmlentities($product['stock'])?> "name= "stock">
-                <label for="floatingInput">Stock *</label>
-            </div>
-
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupFile01">Product image</label>
-                <input type="hidden" value=<?=$product['img_url']?> name="currentImg">
-                <input type="file" class="form-control" id="inputGroupFile02" name="uploadedFile">
-            </div>
-            
-            <div class="d-grid gap-3 col-6 mx-auto ">
-                <input type="submit" class="btn" name="updateProductBtn" value="Update">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" value="<?=htmlentities($product['title'])?>" name= "title">
+                    <label for="floatingInput">Product name *</label>
+                </div>
                 
-                <a href="manage-products.php" class="btn btn-secondary cancel-btn">Cancel</a>
-            </div>
-        </form>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" value="<?=htmlentities($product['price'])?> "name= "price">
+                    <label for="floatingInput">Price (KR) *</label>
+                </div>
+                
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="floatingTextarea2" style="height: 200px" name="description"><?=htmlentities($product['description'])?></textarea>
+                    <label for="floatingTextarea2">Description *</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" value="<?=htmlentities($product['stock'])?> "name= "stock">
+                    <label for="floatingInput">Stock *</label>
+                </div>
+
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile01">Product image</label>
+                    <input type="hidden" value=<?=$product['img_url']?> name="currentImg">
+                    <input type="file" class="form-control" id="inputGroupFile02" name="uploadedFile">
+                </div>
+        </div>
+                <div class="d-grid gap-3 col-6 mx-auto mt-4 ">
+                    <input type="submit" class="btn" name="updateProductBtn" value="Update">
+                    
+                    <a href="manage-products.php" class="btn btn-secondary cancel-btn">Cancel</a>
+                </div>
+            </form>
     </div>
 
 <?php include('../layout/footer.php'); ?>
