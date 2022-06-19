@@ -3,8 +3,7 @@
     require('../../../src/config.php');
 
     $message = "";
-    $imgUrl = "product-images/placeholder.png";
-
+    
     $title       = "";
     $price       = "";
     $description = "";
@@ -32,11 +31,12 @@
             
             $isFileTypeAllowed = array_search($fileType, $allowedFileTypes, true);
             if ($isFileTypeAllowed === false) {
-                $errorMessages .= "Invalid file type. Accepted file types are jpeg, png, gif. <br>";
+    			$errorMessages .= "<li> Invalid file type. Accepted file types are jpeg, png, gif. </li>";
+
             }
 
             if ($_FILES['upfile']['size'] > 10000) { 
-                $errorMessages .= 'Exceeded filesize limit. <br>';
+    			$errorMessages .= '<li> Exceeded filesize limit. </li>';
             }
 
             if (empty($errorMessages)) {
@@ -45,16 +45,17 @@
                 if ($isTheFileUploaded) {
                     $imgUrl = $newFilePath;
                 } else {
-                    $errorMessages = "Could not upload the file";
+				    $errorMessages .= "<li> Could not upload the file </li>";
                 }
             }
         } 	
 
-        if (empty($title) || empty($price) || empty($description) || empty($stock)) {
+        if (empty($title) || empty($price) || empty($description) || empty($stock) || empty($imgUrl)) {
             $errorMessages .= generateErrorMessageForEmptyField($title, "Title");
             $errorMessages .= generateErrorMessageForEmptyField($price, "Price");
             $errorMessages .= generateErrorMessageForEmptyField($stock, "Stock");
             $errorMessages .= generateErrorMessageForEmptyField($description, "Description");
+            $errorMessages .= generateErrorMessageForEmptyField($imgUrl, "Product image");
         }
 
         if (is_numeric($price) === false && !empty($price) || is_numeric($stock) === false && !empty($stock)) {
@@ -65,9 +66,8 @@
                 $errorMessages .= '<li> Wrong input for <strong> Stock </strong> (Needs to be a number). </li>';
             }
         }
-
         if (!empty($errorMessages)) {
-            $message .= '<div class="alert alert-danger" ><ul>'. $errorMessages. '</ul></div> ' ;
+            $message .= '<div class="alert alert-danger messages-div" ><ul>'. $errorMessages. '</ul></div> ' ;
         
         } else {
             $productsDbHandler -> addProduct($title, $description, $price, $stock, $imgUrl);
@@ -90,45 +90,47 @@
 <body>
 
     <div class="container mt-3">
-        <h1 class="page-header-products center" >Add new product</h1>
+        <h1 class="center" >Add new product</h1>
         <br>
 
         <?= $message ?>
+        <img src="product-images/placeholder.png" class="mb-3 product-img-form"height="300px">
 
-        <form class="input-form" action="" method="post" enctype="multipart/form-data">
-            <img src= <?= $imgUrl ?> class="mb-3"height="300px">
+        <div class="form-background">
+            <form class="input-form" action="" method="post" enctype="multipart/form-data">
 
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Product name" id="floatingInput" name= "title" value= <?=htmlentities($title)?>>
-                <label for="floatingInput">Product name *</label>
-            </div>  
-            
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Price" id="floatingInput" name= "price" value= <?=htmlentities($price)?>>
-                <label for="floatingInput">Price (KR) *</label>
-            </div>
-            
-            <div class="form-floating mb-3">
-                <textarea class="form-control" id="floatingTextarea2" style="height: 200px" name="description"> <?=htmlentities($product['description'])?></textarea>
-                <label for="floatingTextarea2">Description *</label>
-            </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" placeholder="Product name" id="floatingInput" name= "title" value= <?=htmlentities($title)?>>
+                    <label for="floatingInput">Product name *</label>
+                </div>  
+                
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" placeholder="Price" id="floatingInput" name= "price" value= <?=htmlentities($price)?>>
+                    <label for="floatingInput">Price (KR) *</label>
+                </div>
+                
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" id="floatingTextarea2" style="height: 200px" name="description"> <?=htmlentities($product['description'])?></textarea>
+                    <label for="floatingTextarea2">Description *</label>
+                </div>
 
-            <div class="form-floating mb-3">
-                <input type="text" class="form-control" placeholder="Stock" id="floatingInput" name= "stock" value= <?=htmlentities($stock)?>>
-                <label for="floatingInput">Stock *</label>
-            </div> 
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" placeholder="Stock" id="floatingInput" name= "stock" value= <?=htmlentities($stock)?>>
+                    <label for="floatingInput">Stock *</label>
+                </div> 
 
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="inputGroupFile01">Product image</label>
-                <input type="file" class="form-control" id="inputGroupFile02" name="uploadedFile">
-            </div>
-        
-            <div class="d-grid gap-3 col-6 mx-auto ">
-                <input type="submit" class="btn" name="addProductBtn" value="Add">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="inputGroupFile01">Product image</label>
+                    <input type="file" class="form-control" id="inputGroupFile02" name="uploadedFile">
+                </div>
+        </div>
+                <div class="d-grid gap-3 col-6 mx-auto mt-4">
+                    <input type="submit" class="btn" name="addProductBtn" value="Add">
 
-                <a href="manage-products.php" class="btn btn-secondary cancel-btn">Cancel</a>
-            </div>
-        </form>
+                    <a href="manage-products.php" class="btn btn-secondary cancel-btn">Cancel</a>
+            </form>
+
+        </div>
     </div>
 
 <?php include('../layout/footer.php');?> 
