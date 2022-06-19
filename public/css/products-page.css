@@ -1,4 +1,4 @@
-@import 'general.css';
+@import '../css/general.css';
 
 .container > h1 {
     font-family: var(--ff-rubrik);
