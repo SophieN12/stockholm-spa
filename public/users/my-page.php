@@ -20,6 +20,12 @@
     $successMessage     = "";
     $emailError         = "";
 
+    if (isset($_POST['deleteBtn'])) {
+        $usersDbHandler->deleteUser();
+        destroySession();
+        redirect('login.php?deletedUser');
+    }
+
     if (isset($_POST['updateBtn'])) {
         $confirmPassword = trim($_POST['confirmPassword']);
 

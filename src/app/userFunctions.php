@@ -21,3 +21,8 @@
 
         return $errorMessages;
     }
+
+    function destroySession () {
+        $_SESSION = [];
+        session_destroy();
+    }
