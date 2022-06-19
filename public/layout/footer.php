@@ -20,8 +20,8 @@
     <section id="contact-info">
         <h2 class="footer-h2">KONTAKT</h2>
         <p class="footer-p">Stockholm@spa.com<br>08-8936763</p>
-        <img src="img/img-footer/insta-icon.png" alt="Instagram's Icon">
-        <img src="img/img-footer/facebook-icon.png" alt="Facebook's Icon">
-        <img src="img/img-footer/youtube-icon.png" alt="Youtube's Icon">
+        <img src="../img/img-footer/insta-icon.png" alt="Instagram's Icon">
+        <img src="../img/img-footer/facebook-icon.png" alt="Facebook's Icon">
+        <img src="../img/img-footer/youtube-icon.png" alt="Youtube's Icon">
     </section>
 </footer>
