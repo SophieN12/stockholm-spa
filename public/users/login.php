@@ -10,14 +10,14 @@
 
     if (isset($_GET['deletedUser'])) {
         $deletedUser = 
-        '<div class="alert alert-danger" role="alert">
+        '<div "alert alert-success" role="alert">
             User deleted
         </div>';
     }
 
     if (isset($_GET['logout'])) {
         $logout = 
-        '<div class="alert alert-danger" role="alert">
+        '<div "alert alert-success" role="alert">
             User logged out
         </div>';
     }
