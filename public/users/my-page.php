@@ -1,25 +1,11 @@
 <?php 
-    session_start();
-    require('../../src/dbconnect.php');
+    require('../../src/config.php');
 
     if (!isset($_SESSION['email'])) {
-        header('Location: login.php?mustLogin');
-        exit;
+        redirect('login.php?mustLogin');
     }
 
-    $errorMessages = array(
-        'first_name'=>"", 
-        'last_name'=>"", 
-        'street'=>"", 
-        'postal_code'=>"", 
-        'city'=>"", 
-        'country'=>"",
-        'phone'=>"", 
-        'email'=>"", 
-        'password'=>"",
-        'confirmPassword'=>"",
-        'emailError'=>""
-    );
+    $errorMessages = declareErrorMessages ();
 
     $first_name         = "";
     $last_name          = "";
@@ -45,7 +31,7 @@
                 $errorMessages['first_name'] = "Special characters are not allowed, please try again";
             };
         }
-    
+
         if (empty($_POST['last_name'])) {
             $errorMessages['last_name'] = "Please enter your last name";
         } else {
@@ -96,7 +82,7 @@
                 $errorMessages['phone'] = "Must only contain numbers, please try again";
             }
         }
-    
+
         if (empty($_POST['email'])) {
             $errorMessages['email'] = "Please enter your email";
         } else {
@@ -115,38 +101,13 @@
         if ($_POST['newPassword'] !== $confirmPassword) {
             $errorMessages['confirmPassword'] = "Confirmed password incorrect!";
         }
-    
+
         // If no errors then update user in database
         if(!array_filter($errorMessages)) {
             try {
-                $sql = "
-                UPDATE users
-                SET 
-                first_name = :first_name, 
-                last_name = :last_name, 
-                email = :email, 
-                password = :password, 
-                phone = :phone, 
-                street = :street, 
-                postal_code = :postal_code, 
-                city = :city, 
-                country = :country
-                WHERE id = :id
-                ";
-                
-                $id = $_SESSION['id'];
-                $stmt = $pdo->prepare($sql);
-                $stmt->bindParam(':first_name', $first_name);
-                $stmt->bindParam(':last_name', $last_name);
-                $stmt->bindParam(':email', $email);
-                $stmt->bindParam(':password', $encryptedPassword);
-                $stmt->bindParam(':phone', $phone);
-                $stmt->bindParam(':street', $street);
-                $stmt->bindParam(':postal_code', $postal_code);
-                $stmt->bindParam(':city', $city);
-                $stmt->bindParam(':country', $country);
-                $stmt->bindParam(':id', $id);
-                $stmt->execute();
+               $usersDbHandler->updateUser (
+                   $first_name, $last_name, $email, $encryptedPassword, $phone, 
+                   $street, $postal_code, $city, $country);
                 
                 $successMessage = "User succesfully updated!";
             } catch (\PDOException $e ){
@@ -158,6 +119,8 @@
             }
         }
     }
+
+    $user = $usersDbHandler->fetchUserByEmail ($_SESSION['email']);
 ?>
 
 <!DOCTYPE html>
@@ -171,27 +134,27 @@
 <body>
     <div id="container">
         <h1>My page</h1>
-        <p id="successMessage"><?=$successMessage?></p>
         <h3>Update user information</h3>
-            <form action="" method="POST">
+        <p id="successMessage"><?=$successMessage?></p>
+        <form action="" method="POST">
                 <label for="first_name">First Name</label><br>
-                <input type="text" name="first_name" value="<?=htmlentities($_SESSION['first_name'])?>"><br>
+                <input type="text" name="first_name" value="<?=htmlentities($user['first_name'])?>"><br>
                 <p class="error"><?=$errorMessages['first_name'];?></p>
                 
                 <label for="last_name">Last Name</label><br>
-                <input type="text" name="last_name" value="<?=htmlentities($_SESSION['last_name'])?>"><br>
+                <input type="text" name="last_name" value="<?=htmlentities($user['last_name'])?>"><br>
                 <p class="error"><?=$errorMessages['last_name'];?></p>
                 
                 <label for="street">Street</label><br>
-                <input type="text" name="street" value="<?=htmlentities($_SESSION['street'])?>"><br>
+                <input type="text" name="street" value="<?=htmlentities($user['street'])?>"><br>
                 <p class="error"><?=$errorMessages['street'];?></p>
                 
                 <label for="postal_code">Postal Code</label><br>
-                <input type="text" name="postal_code" value="<?=htmlentities($_SESSION['postal_code'])?>"><br>
+                <input type="text" name="postal_code" value="<?=htmlentities($user['postal_code'])?>"><br>
                 <p class="error"><?=$errorMessages['postal_code'];?></p>
                 
                 <label for="email">Email</label><br>
-                <input type="text" name="email" value="<?=htmlentities($_SESSION['email'])?>"><br>
+                <input type="text" name="email" value="<?=htmlentities($user['email'])?>"><br>
                 <p class="error"><?=$errorMessages['email'];?></p>
                 <p class="error"><?=$errorMessages['emailError'];?></p>
                 
@@ -204,26 +167,30 @@
                 <p class="error"><?=$errorMessages['confirmPassword'];?></p>
                 
                 <label for="phone">Phone number</label><br>
-                <input type="text" name="phone" value="<?=htmlentities($_SESSION['phone'])?>"><br>
+                <input type="text" name="phone" value="<?=htmlentities($user['phone'])?>"><br>
                 <p class="error"><?=$errorMessages['phone'];?></p>
                 
                 <label for="city">City</label><br>
-                <input type="text" name="city" value="<?=htmlentities($_SESSION['city'])?>"><br>
+                <input type="text" name="city" value="<?=htmlentities($user['city'])?>"><br>
                 <p class="error"><?=$errorMessages['city'];?></p>
                 
                 <label for="country">Country</label><br>
                 <select name="country" id="country">
                     <option disabled selected value> -- select a country -- </option>
-                    <option value="SE" <?php echo ($_SESSION['country'] == "SE") ? 'selected' : '';?>>Sweden</option>
-                    <option value="NO" <?php echo ($_SESSION['country'] == "NO") ? 'selected' : '';?>>Norway</option>
-                    <option value="DK" <?php echo ($_SESSION['country'] == "DK") ? 'selected' : '';?>>Denmark</option>
-                    <option value="FI" <?php echo ($_SESSION['country'] == "FI") ? 'selected' : '';?>>Finland</option>
+                    <option value="SE" <?php echo ($user['country'] == "SE") ? 'selected' : '';?>>Sweden</option>
+                    <option value="NO" <?php echo ($user['country'] == "NO") ? 'selected' : '';?>>Norway</option>
+                    <option value="DK" <?php echo ($user['country'] == "DK") ? 'selected' : '';?>>Denmark</option>
+                    <option value="FI" <?php echo ($user['country'] == "FI") ? 'selected' : '';?>>Finland</option>
                 </select><br><br>
                 <p class="error"><?=$errorMessages['country'];?></p>
                 
                 <input type="submit" name="updateBtn" value="Update" id="submitBtn">
             </form><br>
-        <a href="logout.php">Log out</a>
+            <form action="" method="POST">
+                <input type="hidden" name="id" value="<?=htmlentities($_SESSION['id'])?>">
+                <input type="submit" name="deleteBtn" value="Delete">
+            </form>
+        <a href="logout.php">Logout</a>
     </div>
 </body>
 </html>

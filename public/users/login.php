@@ -1,16 +1,27 @@
 <?php 
-    session_start();
-    require('../../src/dbconnect.php');
+    require('../../src/config.php');
 
-    $errorMessages = array('email'=>"", 'password'=>"", 'incorrectLogin'=>"", 'mustLogin'=>"");
+    $errorMessages = array('email'=>"", 'password'=>"");
     $email = "";
+    $deletedUser = "";
+    $logout = "";
+    $mustLogin = "";
+    $incorrectLogin = "";
+
+    if (isset($_GET['deletedUser'])) {
+        $deletedUser = "User deleted";
+    }
+
+    if (isset($_GET['logout'])) {
+        $logout = "User logged out";
+    }
 
     if (isset($_GET['mustLogin'])) {
-        $errorMessages['mustLogin'] = "Please log in to access this page";
+        $mustLogin = "Please log in to access this page";
     }
 
     if (isset($_POST['loginBtn'])) {
-        
+
         if (empty($_POST['email'])) {
             $errorMessages['email'] = "Please enter your email";
         } else {
@@ -24,33 +35,18 @@
         }
 
         if(!array_filter($errorMessages)) {
-            $sql = "
-                SELECT * FROM users
-                WHERE email = :email
-            ";
-    
-            $stmt = $pdo->prepare($sql);
-            $stmt->bindParam(':email', $email);
-            $stmt->execute();
-    
-            $user = $stmt->fetch();
+            
+            $user = $usersDbHandler->fetchUserByEmail($email);
     
             if ($user && password_verify($password, $user['password'])) {
                 // set login session
                 $_SESSION['id'] = $user['id'];
-                $_SESSION['first_name'] = $user['first_name'];
-                $_SESSION['last_name'] = $user['last_name'];
-                $_SESSION['street'] = $user['street'];
-                $_SESSION['postal_code'] = $user['postal_code'];
                 $_SESSION['email'] = $user['email'];
                 $_SESSION['password'] = $user['password'];
-                $_SESSION['phone'] = $user['phone'];
-                $_SESSION['city'] = $user['city'];
-                $_SESSION['country'] = $user['country'];
-                header('Location: my-page.php');
+                redirect('my-page.php');
                 exit;
             } else {
-                $errorMessages['incorrectLogin'] = "The username or password you entered is incorrect";
+                $incorrectLogin = "The username or password you entered is incorrect";
             }
         }
     }
@@ -68,8 +64,10 @@
 <body>
     <div id="container">
         <h1>Login</h1>
-        <p><?=$errorMessages['incorrectLogin']?></p>
-        <p><?=$errorMessages['mustLogin']?></p>
+        <p><?=$deletedUser?></p>
+        <p><?=$logout?></p>
+        <p><?=$mustLogin?></p>
+        <p><?=$incorrectLogin?></p>
         <form action="" method="POST">
             <label for="email">Email</label><br>
             <input type="text" name="email" value="<?=htmlentities($email)?>"><br><br>
@@ -78,7 +76,8 @@
             <input type="password" name="password"><br><br>
             <p><?=$errorMessages['password']?></p>
             <input type="submit" name="loginBtn" value="Log in">
-        </form>
+        </form><br>
+        <a href="new-user.php">Create new account</a><br><br>
         <a href="my-page.php">My page</a>
     </div>
 </body>
