@@ -1,0 +1,24 @@
+@import url(https://fonts.googleapis.com/css?family=Lora:regular,500,600,700,italic,500italic,600italic,700italic);
+@import url(https://fonts.googleapis.com/css?family=Tenor+Sans:regular);
+
+*,html{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root{
+    --sand: #EEEAE7;
+    --green: #7C8E74;
+    --black: #424242; 
+    --white: #ffffff;
+
+    --ff-bodytext: lora;
+    --ff-rubrik: tenor sans;
+
+    --fs-stor: 80px;
+    --fs-rubrik: 43px;
+    --fs-underrubrik:30px;
+    --fs-bodytext: 22px; 
+    --fs-bodytext-mobile: 18px;
+}

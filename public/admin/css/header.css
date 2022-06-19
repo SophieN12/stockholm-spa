@@ -1,0 +1,83 @@
+@import "general.css";
+
+header{
+    max-width: 1920px;
+    margin: 0 auto;
+    background-color: var(--sand);
+    height: 110px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+.nav_list{
+    display: flex;
+}
+li, .link{
+    font-family:var(--ff-rubrik) ;
+    font-weight: 200;
+    font-size: var(--fs-bodytext);
+    color: var(--black);
+    text-decoration: none;
+    list-style: none;
+    margin-left: 15px;
+}
+.navbar:hover{
+    padding-bottom: 3px;
+    border-bottom: solid 2px var(--black);
+}
+.hamburgermenu{
+    display: block;
+}
+.logo{
+    position: absolute; 
+    left: 0; 
+    right: 0; 
+    top: 10px;
+    margin: auto auto;
+    width: 160px; 
+}
+#search{
+    padding-bottom: 6px;
+    margin-right: 10px;
+}
+
+.active{
+    padding-bottom: 3px;
+    border-bottom: solid 2px var(--black);
+}
+
+
+/* vanlig navugering försvinner och ersätts med hamburger-menu */
+@media screen and (max-width: 1300px ) {
+    .nav_list{
+        display: none;
+    }
+}
+@media screen and (min-width: 1300px ) {
+    .hamburgermenu{
+        display: none;
+    }
+}
+
+/* loggan förminskas vid teblet-storlek */
+@media screen and (max-width: 770px) {
+    .logo{
+       width: 120px;
+        top: 15px; 
+    }
+}
+
+/* skärmar mindre än 500px (mobil) */
+@media screen and (max-width: 500px) {
+    .logo{
+       width: 80px;
+        top: 15px; 
+    }
+    header{
+        padding: 0 15px;
+    }
+    .link{
+        margin: 0;
+    }
+}
