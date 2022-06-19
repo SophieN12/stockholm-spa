@@ -1,12 +1,12 @@
 <?php
 
-$host 	  = '';
-$database = '';
-$user     = '';
-$password = '';
-$charset  = 'utf8mb4';
+$host 		= "localhost";
+$database 	= "e_butik";
+$user 		= "root";
+$pass 		= "root";
+$charset 	= "utf8mb4";
 
-$dns 	  = "mysql:host={$host};dbname={$database};charset={$charset}";
+$dsn 		= "mysql:host={$host};dbname={$database};charset={$charset}";
 
 // För MAMP, så kan dns se lite olika ut
 //$dns 	  = "mysql:unix_socket=/Application/MAMP/tmp/mysql/mysql.sock;dbname={$database}";
@@ -24,13 +24,9 @@ $options = [
 ];
 
 
-// Upprätta en DB koppling
 try {
-	// Försök köra koden i try-blocket
-	$dbconnect = new PDO($dns, $user, $password, $options);
+	$pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-	// Catch-blocket körs om något gick fel i try-blocket
-	// echo $e->getMessage();
-	// echo $e->getCode();
 	throw new \PDOException($e->getMessage(), (int) $e->getCode());
 }
+?>
