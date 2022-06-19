@@ -28,6 +28,10 @@ define('IMG_PATH', '../public/img/');          // path to "img"-folder
 
 
 // Include functions and classes
-require(SRC_PATH . '/dbconnect.php');
 require(SRC_PATH . '/app/UseradminDbHandler.php');
 $useradminDbHandler = new UseradminDbHandler($pdo);
+
+require(SRC_PATH . '/dbconnect.php');
+require(SRC_PATH . '/app/common_functions.php');
+require(SRC_PATH . '/app/ProductsDbHandler.php');
+$productsDbHandler = new ProductsDbHandler($pdo);
