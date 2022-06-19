@@ -1,7 +1,6 @@
 <?php 
     require('../../src/config.php');
 
-    $errorMessages = declareErrorMessages ();
     $first_name         = "";
     $last_name          = "";
     $street             = "";
