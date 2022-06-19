@@ -1,6 +1,6 @@
 <?php
 require('../src/config.php');
-$products = $productsDbHandler->fetchAllProducts();
+$products = $ProductsDbHandler->fetchAllProducts();
 ?>
 
 <!DOCTYPE html>

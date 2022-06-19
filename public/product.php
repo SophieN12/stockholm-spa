@@ -1,6 +1,6 @@
 <?php
 require('../src/config.php');
-$product = $productsDbHandler->fetchProduct($_GET['productId']);
+$product = $ProductsDbHandler->fetchProduct($_GET['productId']);
 ?>
 
 <!DOCTYPE html>
