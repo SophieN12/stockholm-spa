@@ -1,6 +1,6 @@
 <?php
 require('../src/config.php');
-$products = $ProductsDbHandler->fetchAllProducts();
+$products = $productsDbHandler->fetchAllProducts();
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ $products = $ProductsDbHandler->fetchAllProducts();
 
 <head>
     <title>Stockholm Spa</title>
-    <link rel="stylesheet" href="../css/products-page.css">
+    <link rel="stylesheet" href="../public/css/products-page.css">
 </head>
 
 <body>

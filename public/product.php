@@ -1,6 +1,6 @@
 <?php
 require('../src/config.php');
-$product = $ProductsDbHandler->fetchProduct($_GET['productId']);
+$product = $productsDbHandler->fetchSpecificProduct($_GET['productId']);
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ $product = $ProductsDbHandler->fetchProduct($_GET['productId']);
 
 <head>
     <title>Product</title>
-    <link rel="stylesheet" href="../css/products-page.css">
+    <link rel="stylesheet" href="../public/css/products-page.css">
 </head>
 
 <body>
