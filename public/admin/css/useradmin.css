@@ -1,0 +1,48 @@
+@import "general.css";
+
+/* new user form */
+.rubrik{
+    font-family: var(--ff-rubrik);
+    color: var(--black);
+    font-size: var(--fs-underrubrik);
+    margin-bottom: 30px;
+    margin-top: 40px;
+}
+.new-user-section{
+    width: 100%;
+    height: auto;
+    padding: 20px 40px;
+    max-width: 1200px;
+}
+#add-user-form{
+    background-color: var(--sand);
+    padding: 20px;
+    border-radius: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.inputfield{
+    width: 45%;
+    height: 45px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin: 10px;
+    font-family: var(--ff-rubrik);
+}
+.inputfield-long{
+    width: 94%;
+}
+.add-user-btn{
+    background-color: var(--green);
+    border: none;
+    border-radius: 5px;
+    margin-top: 40px;
+    color: var(--sand);
+    font-family: var(--ff-rubrik);
+    font-size: var(--fs-bodytext);
+    width: 200px;
+    height: 45px;
+}
