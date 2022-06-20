@@ -4,24 +4,6 @@
         exit;
     }
 
-    function declareErrorMessages () {
-        $errorMessages = array(
-            'first_name'=>"", 
-            'last_name'=>"", 
-            'street'=>"", 
-            'postal_code'=>"", 
-            'city'=>"", 
-            'country'=>"",
-            'phone'=>"", 
-            'email'=>"", 
-            'password'=>"",
-            'confirmPassword'=>"",
-            'emailError'=>""
-        );
-
-        return $errorMessages;
-    }
-
     function destroySession () {
         $_SESSION = [];
         session_destroy();
