@@ -1,5 +1,5 @@
 <?php
-require('../src/config.php');
+require('../../src/config.php');
 $product = $productsDbHandler->fetchSpecificProduct($_GET['productId']);
 $pageTitle = $product['title'];
 ?>
@@ -7,11 +7,11 @@ $pageTitle = $product['title'];
 <!DOCTYPE html>
 <html>
 
-<?php include('../public/layout/header.php'); ?>
+<?php include('../layout/header.php'); ?>
 
 <head>
     <title><?= $pageTitle ?></title>
-    <link rel="stylesheet" href="../public/css/products-page.css">
+    <link rel="stylesheet" href="../../public/css/products-page.css">
 </head>
 
 <body>
@@ -37,6 +37,6 @@ $pageTitle = $product['title'];
     </div>
 </body>
 
-<?php include('../public/layout/footer.php'); ?>
+<?php include('../layout/footer.php'); ?>
 
 </html>

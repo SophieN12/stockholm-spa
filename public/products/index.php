@@ -1,16 +1,16 @@
 <?php
-require('../src/config.php');
+require('../../src/config.php');
 $products = $productsDbHandler->fetchAllProducts();
 ?>
 
 <!DOCTYPE html>
 <html>
 
-<?php include('../public/layout/header.php'); ?>
+<?php include('../layout/header.php'); ?>
 
 <head>
     <title>Stockholm Spa</title>
-    <link rel="stylesheet" href="../public/css/products-page.css">
+    <link rel="stylesheet" href="../../public/css/products-page.css">
 </head>
 
 <body>
@@ -36,6 +36,6 @@ $products = $productsDbHandler->fetchAllProducts();
     </div>
 </body>
 
-<?php include('../public/layout/footer.php'); ?>
+<?php include('../layout/footer.php'); ?>
 
 </html>
