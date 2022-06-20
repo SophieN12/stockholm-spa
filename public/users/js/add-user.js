@@ -15,18 +15,8 @@ async function addUser(e) {
 
         const data = await response.json();
 
-        $('#successMessage').html(data['successMessage']);
-        $('#first-name-error').html(data['first_name-error']);
-        $('#last-name-error').html(data['last_name-error']);
-        $('#street-error').html(data['street-error']);
-        $('#postal_code-error').html(data['postal_code-error']);
-        $('#email-error').html(data['email-error']);
-        $('#email-error2').html(data['email-error2']);
-        $('#password-error').html(data['password-error']);
-        $('#confirmPassword-error').html(data['confirmPassword-error']);
-        $('#phone-error').html(data['phone-error']);
-        $('#city-error').html(data['city-error']);
-        $('#country-error').html(data['country-error']);
+        $('#success').html(data['successMessage']);
+        $('#error').html(data['errorMessages']);
 
         if (!$('#successMessage').is(':empty')) {
             $('#add-user-form')[0].reset();

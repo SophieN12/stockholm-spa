@@ -12,6 +12,7 @@
     $password           = "";
     $confirmPassword    = "";
     $successMessage     = "";
+    $errorMessages      = "";
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +30,8 @@
 <body>
     <div id="container">
         <h1>Create new user</h1>
-        <p id="successMessage"></p>
+        <p id="success" class="alert alert-success" role="alert"><?=$successMessage?></p>
+        <p id="error" class="alert alert-danger" role="alert"><?=$errorMessages?></p>
         <form id="add-user-form" action="" method="POST">
             <div id="form-inputs">
                 <div id="left-side-form">

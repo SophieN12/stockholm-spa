@@ -5,7 +5,7 @@
         redirect('login.php?mustLogin');
     }
 
-    $errorMessages = declareErrorMessages ();
+    $errorMessages = "";
 
     $first_name         = "";
     $last_name          = "";
@@ -30,71 +30,71 @@
         $confirmPassword = trim($_POST['confirmPassword']);
 
         if (empty($_POST['first_name'])) {
-            $errorMessages['first_name'] = "Please enter your first name";
+            $errorMessages .= "Please enter your first name<br>";
         } else {
             $first_name = trim($_POST['first_name']);
             if(preg_match('/[\^£$%&"*()}{@#~?><>,|=_+¬]/', $_POST['first_name'])) {
-                $errorMessages['first_name'] = "Special characters are not allowed, please try again";
+                $errorMessages .= "Special characters in 'First name' are not allowed, please try again<br>";
             };
         }
 
         if (empty($_POST['last_name'])) {
-            $errorMessages['last_name'] = "Please enter your last name";
+            $errorMessages .= "Please enter your last name<br>";
         } else {
             $last_name = trim($_POST['last_name']);
             if(preg_match('/[\^£$%&"*()}{@#~?><>,|=_+¬]/', $_POST['last_name'])) {
-                $errorMessages['last_name'] = "Special characters are not allowed, please try again";
+                $errorMessages .= "Special characters in 'Last name' are not allowed, please try again<br>";
             };
         }
 
         if (empty($_POST['street'])) {
-            $errorMessages['street'] = "Please enter your address";
+            $errorMessages .= "Please enter your address<br>";
         } else {
             $street = trim($_POST['street']);
             if(preg_match('/[\^£$%&"*()}{@#~?><>,|=_+¬]/', $_POST['street'])) {
-                $errorMessages['street'] = "Special characters are not allowed, please try again";
+                $errorMessages .= "Special characters in 'Street' are not allowed, please try again<br>";
             };
         }
 
         if (empty($_POST['postal_code'])) {
-            $errorMessages['postal_code'] = "Please enter your postcode";
+            $errorMessages .= "Please enter your postcode<br>";
         } else {
             $postal_code = trim($_POST['postal_code']);
             if (!is_numeric($postal_code)) {
-                $errorMessages['postal_code'] = "Must only contain numbers, please try again";
+                $errorMessages .= "Must only contain numbers, please try again<br>";
             }
         }
 
         if (empty($_POST['city'])) {
-            $errorMessages['city'] = "Please enter your city";
+            $errorMessages .= "Please enter your city<br>";
         } else {
             $city = trim($_POST['city']);
             if(preg_match('/[\^£$%&"*()}{@#~?><>,|=_+¬]/', $_POST['city'])) {
-                $errorMessages['city'] = "Special characters are not allowed, please try again";
+                $errorMessages .= "Special characters in 'City' are not allowed, please try again<br>";
             };
         }
 
         if (empty($_POST['country'])) {
-            $errorMessages['country'] = "Please choose your country";
+            $errorMessages .= "Please choose your country<br>";
         } else {
             $country = $_POST['country'];
         }
 
         if (empty($_POST['phone'])) {
-            $errorMessages['phone'] = "Please enter your phone number";
+            $errorMessages .= "Please enter your phone number<br>";
         } else {
             $phone = trim($_POST['phone']);
             if (!is_numeric($phone)) {
-                $errorMessages['phone'] = "Must only contain numbers, please try again";
+                $errorMessages .= "'Phone' must only contain numbers, please try again<br>";
             }
         }
 
         if (empty($_POST['email'])) {
-            $errorMessages['email'] = "Please enter your email";
+            $errorMessages .= "Please enter your email<br>";
         } else {
             $email = trim($_POST['email']);
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $errorMessages['email'] = "Not a valid email, please try again";
+                $errorMessages .= "Not a valid email, please try again<br>";
             }
         }
 
@@ -105,11 +105,11 @@
         }
 
         if ($_POST['newPassword'] !== $confirmPassword) {
-            $errorMessages['confirmPassword'] = "Confirmed password incorrect!";
+            $errorMessages .= "Confirmed password incorrect!<br>";
         }
 
         // If no errors then update user in database
-        if(!array_filter($errorMessages)) {
+        if(empty($errorMessages)) {
             try {
                $usersDbHandler->updateUser (
                    $first_name, $last_name, $email, $encryptedPassword, $phone, 
@@ -118,7 +118,7 @@
                 $successMessage = "User succesfully updated!";
             } catch (\PDOException $e ){
                 if ((int) $e->getCode() === 23000) {
-                    $errorMessages['emailError'] = "Email address already registred, please enter a different email";
+                    $errorMessages .= "Email address already registred, please enter a different email";
                 } else {
                     throw new \PDOException($e->getMessage(), (int) $e->getCode());
                 }
@@ -143,48 +143,39 @@
 <body>
     <div id="container">
         <h1>My page</h1>
-        <h3>Update user information</h3>
-        <p id="successMessage"><?=$successMessage?></p>
+        <h3>Update user information</h3><br>
+        <p id="success" class="alert alert-success" role="alert"><?=$successMessage?></p>
+        <p id="error" class="alert alert-danger" role="alert"><?=$errorMessages?></p>
         <form action="" method="POST">
             <div id="form-inputs">
                 <div id="left-side-form">
                     <label for="first_name">First Name</label><br>
                     <input type="text" name="first_name" value="<?=htmlentities($user['first_name'])?>"><br>
-                    <p class="error"><?=$errorMessages['first_name'];?></p>
                     
                     <label for="last_name">Last Name</label><br>
                     <input type="text" name="last_name" value="<?=htmlentities($user['last_name'])?>"><br>
-                    <p class="error"><?=$errorMessages['last_name'];?></p>
                     
                     <label for="email">Email</label><br>
                     <input type="text" name="email" value="<?=htmlentities($user['email'])?>"><br>
-                    <p class="error"><?=$errorMessages['email'];?></p>
-                    <p class="error"><?=$errorMessages['emailError'];?></p>
     
                     <label for="newPassword">New password</label><br>
                     <input type="password" name="newPassword" value=""><br>
-                    <p class="error"><?=$errorMessages['password'];?></p>
                     
                     <label for="confirmPassword">Confirm new password</label><br>
                     <input type="password" name="confirmPassword" value=""><br>
-                    <p class="error"><?=$errorMessages['confirmPassword'];?></p>
                 </div>
                 <div id="right-side-form">
                     <label for="street">Street</label><br>
                     <input type="text" name="street" value="<?=htmlentities($user['street'])?>"><br>
-                    <p class="error"><?=$errorMessages['street'];?></p>
                     
                     <label for="postal_code">Postal Code</label><br>
                     <input type="text" name="postal_code" value="<?=htmlentities($user['postal_code'])?>"><br>
-                    <p class="error"><?=$errorMessages['postal_code'];?></p>
                     
                     <label for="phone">Phone number</label><br>
                     <input type="text" name="phone" value="<?=htmlentities($user['phone'])?>"><br>
-                    <p class="error"><?=$errorMessages['phone'];?></p>
                     
                     <label for="city">City</label><br>
                     <input type="text" name="city" value="<?=htmlentities($user['city'])?>"><br>
-                    <p class="error"><?=$errorMessages['city'];?></p>
                     
                     <label for="country">Country</label><br>
                     <select name="country" id="country">
@@ -194,7 +185,6 @@
                         <option value="DK" <?php echo ($user['country'] == "DK") ? 'selected' : '';?>>Denmark</option>
                         <option value="FI" <?php echo ($user['country'] == "FI") ? 'selected' : '';?>>Finland</option>
                     </select><br><br>
-                    <p class="error"><?=$errorMessages['country'];?></p>
                 </div>
             </div>
                 <input id="submitBtn" type="submit" name="updateBtn" value="Update" id="submitBtn">

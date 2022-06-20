@@ -1,7 +1,6 @@
 <?php
     require('../../src/config.php');
 
-    $errorMessages = declareErrorMessages ();
     $first_name         = "";
     $last_name          = "";
     $street             = "";
@@ -13,95 +12,96 @@
     $password           = "";
     $confirmPassword    = "";
     $successMessage     = "";
+    $errorMessages      = "";
 
     if (isset($_POST['createBtn'])) {
             $confirmPassword = trim($_POST['confirmPassword']);
 
             if (empty($_POST['first_name'])) {
-                $errorMessages['first_name'] = "Please enter your first name";
+                $errorMessages .= "Please enter your first name<br>";
             } else {
                 $first_name = trim($_POST['first_name']);
                 if(preg_match('/[\^£$%&"*()}{@#~?><>,|=_+¬]/', $_POST['first_name'])) {
-                    $errorMessages['first_name'] = "Special characters are not allowed, please try again";
+                    $errorMessages .= "Special characters in 'First name' are not allowed, please try again<br>";
                 };
             }
 
             if (empty($_POST['last_name'])) {
-                $errorMessages['last_name'] = "Please enter your last name";
+                $errorMessages .= "Please enter your last name<br>";
             } else {
                 $last_name = trim($_POST['last_name']);
                 if(preg_match('/[\^£$%&"*()}{@#~?><>,|=_+¬]/', $_POST['last_name'])) {
-                    $errorMessages['last_name'] = "Special characters are not allowed, please try again";
+                    $errorMessages .= "Special characters in 'Last name' are not allowed, please try again<br>";
                 };
             }
 
             if (empty($_POST['street'])) {
-                $errorMessages['street'] = "Please enter your address";
+                $errorMessages .= "Please enter your address<br>";
             } else {
                 $street = trim($_POST['street']);
                 if(preg_match('/[\^£$%&"*()}{@#~?><>,|=_+¬]/', $_POST['street'])) {
-                    $errorMessages['street'] = "Special characters are not allowed, please try again";
+                    $errorMessages .= "Special characters in 'Street' are not allowed, please try again<br>";
                 };
             }
 
             if (empty($_POST['postal_code'])) {
-                $errorMessages['postal_code'] = "Please enter your postcode";
+                $errorMessages .= "Please enter your postcode<br>";
             } else {
                 $postal_code = trim($_POST['postal_code']);
                 if (!is_numeric($postal_code)) {
-                    $errorMessages['postal_code'] = "Must only contain numbers, please try again";
+                    $errorMessages .= "Must only contain numbers, please try again<br>";
                 }
             }
 
             if (empty($_POST['city'])) {
-                $errorMessages['city'] = "Please enter your city";
+                $errorMessages .= "Please enter your city<br>";
             } else {
                 $city = trim($_POST['city']);
                 if(preg_match('/[\^£$%&"*()}{@#~?><>,|=_+¬]/', $_POST['city'])) {
-                    $errorMessages['city'] = "Special characters are not allowed, please try again";
+                    $errorMessages .= "Special characters in 'City' are not allowed, please try again<br>";
                 };
             }
 
             if (empty($_POST['country'])) {
-                $errorMessages['country'] = "Please choose your country";
+                $errorMessages .= "Please choose your country<br>";
             } else {
                 $country = $_POST['country'];
             }
 
             if (empty($_POST['phone'])) {
-                $errorMessages['phone'] = "Please enter your phone number";
+                $errorMessages .= "Please enter your phone number<br>";
             } else {
                 $phone = trim($_POST['phone']);
                 if (!is_numeric($phone)) {
-                    $errorMessages['phone'] = "Must only contain numbers, please try again";
+                    $errorMessages .= "'Phone' must only contain numbers, please try again<br>";
                 }
             }
 
             if (empty($_POST['email'])) {
-                $errorMessages['email'] = "Please enter your email";
+                $errorMessages .= "Please enter your email<br>";
             } else {
                 $email = trim($_POST['email']);
                 if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $errorMessages['email'] = "Not a valid email, please try again";
+                    $errorMessages .= "Not a valid email, please try again<br>";
                 }
             }
 
             if (empty($_POST['password'])) {
-                $errorMessages['password'] = "Please enter a password";
+                $errorMessages .= "Please enter a password<br>";
             } else {
                 $password = trim($_POST['password']);
             }
 
             if (empty($_POST['confirmPassword'])) {
-                $errorMessages['confirmPassword'] = "Please confirm your password";
+                $errorMessages .= "Please confirm your password<br>";
             } else {
                 if ($_POST['password'] !== $confirmPassword) {
-                    $errorMessages['confirmPassword'] = "Confirmed password incorrect!";
+                    $errorMessages .= "Confirmed password incorrect!<br>";
                 }
             }
         
             // If no errors then create user in database
-            if(!array_filter($errorMessages)) {
+            if(empty($errorMessages)) {
                 try {
                     $usersDbHandler->createUser (
                         $first_name, $last_name, $email, $password, $phone, 
@@ -110,7 +110,7 @@
                     $successMessage = "User succesfully created!";
                 } catch (\PDOException $e ){
                     if ((int) $e->getCode() === 23000) {
-                        $errorMessages['emailError'] = "Email address already registred, please enter a different email";
+                        $errorMessages .= "Email address already registred, please enter a different email";
                     } else {
                         throw new \PDOException($e->getMessage(), (int) $e->getCode());
                     }
@@ -120,17 +120,7 @@
 
     $data = [
         'successMessage' => $successMessage,
-        'first_name-error' => $errorMessages['first_name'],
-        'last_name-error' => $errorMessages['last_name'],
-        'street-error' => $errorMessages['street'],
-        'postal_code-error' => $errorMessages['postal_code'],
-        'city-error' => $errorMessages['city'],
-        'country-error' => $errorMessages['country'],
-        'phone-error' => $errorMessages['phone'],
-        'email-error' => $errorMessages['email'],
-        'password-error' => $errorMessages['password'],
-        'confirmPassword-error' => $errorMessages['confirmPassword'],
-        'email-error2' => $errorMessages['emailError']
+        'errorMessages' => $errorMessages
     ];
     
     echo json_encode($data);

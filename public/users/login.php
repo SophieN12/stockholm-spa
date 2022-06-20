@@ -1,7 +1,7 @@
 <?php 
     require('../../src/config.php');
 
-    $errorMessages = array('email'=>"", 'password'=>"");
+    $errorMessages = "";
     $email = "";
     $deletedUser = "";
     $logout = "";
@@ -9,47 +9,32 @@
     $incorrectLogin = "";
 
     if (isset($_GET['deletedUser'])) {
-        $deletedUser = 
-        '<div class="alert alert-success" role="alert">
-            User deleted
-        </div>';
+        $deletedUser = "User deleted";
     }
 
     if (isset($_GET['logout'])) {
-        $logout = 
-        '<div class="alert alert-success" role="alert">
-            User logged out
-        </div>';
+        $logout = "User logged out";
     }
 
     if (isset($_GET['mustLogin'])) {
-        $mustLogin = 
-        '<div class="alert alert-danger" role="alert">
-            Please login to access this page
-        </div>';
+        $mustLogin = "Please login to access this page";
     }
 
     if (isset($_POST['loginBtn'])) {
 
         if (empty($_POST['email'])) {
-            $errorMessages['email'] = 
-            '<div class="alert alert-danger" role="alert">
-                Please enter your email
-            </div>';
+            $errorMessages .= "Please enter your email<br>";
         } else {
             $email = trim($_POST['email']);
         }
         
         if (empty($_POST['password'])) {
-            $errorMessages['password'] = '
-            <div class="alert alert-danger" role="alert">
-                Please enter your password
-            </div>';
+            $errorMessages .= "Please enter your password<br>";
         } else {
             $password = trim($_POST['password']);
         }
 
-        if(!array_filter($errorMessages)) {
+        if(empty($errorMessages)) {
             
             $user = $usersDbHandler->fetchUserByEmail($email);
     
@@ -61,10 +46,7 @@
                 redirect('my-page.php');
                 exit;
             } else {
-                $incorrectLogin = '
-                <div class="alert alert-danger" role="alert">
-                    The username or password you entered is incorrect
-                </div>';
+                $incorrectLogin = "The username or password you entered is incorrect";
             }
         }
     }
@@ -85,12 +67,11 @@
 <body>
     <div id="container">
         <h1>Login</h1>
-            <p><?=$deletedUser?></p>
-            <p><?=$logout?></p>
-            <p><?=$mustLogin?></p>
-            <p><?=$incorrectLogin?></p>
-            <p><?=$errorMessages['email']?></p>
-            <p><?=$errorMessages['password']?></p>
+        <p id="success" class="alert alert-success" role="alert"><?=$deletedUser?></p>
+        <p id="success" class="alert alert-success" role="alert"><?=$logout?></p>
+        <p id="error" class="alert alert-danger" role="alert"><?=$mustLogin?></p>
+        <p id="error" class="alert alert-danger" role="alert"><?=$incorrectLogin?></p>
+        <p id="error" class="alert alert-danger" role="alert"><?=$errorMessages?></p>
         <form action="" method="POST">
             <div id="form-inputs">
                 <label for="email">Email*</label><br>
@@ -101,13 +82,7 @@
             <input id="submitBtn" type="submit" name="loginBtn" value="Login">
         </form><br>
         <p id="sign-up">Not a member yet? <a id="sign-up-link" href="new-user.php">Sign up here!</a></p>
-        <a href="new-user.php">Create new account</a><br><br>
         <a href="my-page.php">My page</a>
     </div>
-    <!-- jQuery AND Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
 </body>
 </html>
