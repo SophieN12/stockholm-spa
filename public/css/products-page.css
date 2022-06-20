@@ -1,4 +1,4 @@
-@import 'general.css';
+@import '../css/general.css';
 
 .container > h1 {
     font-family: var(--ff-rubrik);
@@ -89,13 +89,5 @@ a:hover {
 }
 
 li {
-    margin: 10px;
-}
-
-li:first-child {
-    margin-left: 0;
-}
-
-li:last-child {
-    margin-right: 0;
+    margin: 10px 0;
 }

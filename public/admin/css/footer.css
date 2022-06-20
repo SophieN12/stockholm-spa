@@ -1,0 +1,133 @@
+@import 'general.css';
+
+/* For desktops (Bigger than 961px) */
+.container{
+    width: 100%;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    max-width: 1920px;
+    min-height: 320px;
+    background-color: var(--sand);
+    color: var(--green);
+    margin: 0 auto;
+}
+
+footer section{
+    text-align: center;
+    min-width: 320px;
+    margin-top: 70px;
+    height: 80%;
+}
+
+.footer-h2{
+    font-family: var(--ff-rubrik);
+    font-size: var(--fs-rubrik);
+    color: var(--green);
+}
+
+.footer-p{
+    font-size: var(--fs-bodytext);
+    font-family: var(--ff-bodytext);
+    color: var(--green);
+}
+
+#opening-hours-text{
+    width: 90%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(3, 40px);
+    justify-items: center;
+    margin: 0px auto;
+}
+
+#saturday-text,
+#sunday-text{
+    justify-self: self-start;
+    margin-left: 10px;
+}
+
+#find-us-here{
+    border: 2px solid var(--green);
+    border-style: none solid none solid;
+}
+
+footer p{
+    line-height: 2em;
+    margin-top: 10px;
+}
+
+footer img{ 
+    height: 20px;
+    margin: 15px 10px;
+    cursor: pointer
+}
+
+/* For tablets (768px - 961px */
+@media screen and (max-width: 960px){
+    footer{
+        min-height: 280px;
+    }
+    footer section{
+        min-width: 260px;
+    }
+
+    footer .footer-h2{
+            font-size: 24px;
+        }
+
+    footer .footer-p{
+        font-size: 14px;
+    }
+
+    footer img{
+        height: 18px;
+    }
+
+    #saturday-text,
+    #sunday-text{
+    margin-left: 23px;
+    }
+}
+
+/* For mobile (Smaller than 768px) */
+@media screen and (max-width: 767px){
+    footer{
+        flex-direction: column;
+    }
+
+    footer .footer-p{
+        margin-top: 5px;
+    }
+
+    footer section{
+        margin-top: 30px;
+        min-width: 250px;
+    }
+
+    #opening-hours-text{
+        display: flex;
+        width: 40%;
+        flex-flow: column wrap;
+        align-items: center;
+    }
+
+    #saturday-text,
+    #sunday-text{
+    min-width: 111px;
+    margin: 15px 0 0 0;
+    }   
+    
+    #find-us-here{
+        padding: 30px 0 20px 0;
+        border-style: solid none;
+        margin: 30px auto;
+    }
+
+    #contact-info{
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+}
