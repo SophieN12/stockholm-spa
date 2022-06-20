@@ -39,29 +39,28 @@ async function addUserEvent(e){
         html = "";
         for(user of data['users']) {
             html += `
+ 
+            <tr>
+                <td> ${user['first_name']} - ${user['last_name']}</td>
+                <td> ${user['email']}</td>
+                <td> ${user['id']}</td>
+                <td> ${user['phone']}</td>
+                <td> ${user['street']} <br> ${user['postal_code']} <br> ${user['city']}</td>
+                <td>
+                    <form action="update-user.php" method="GET" class="updateBtn">
+                        <input name="userId" type="hidden" value="${user['id']}">
+                        <input class="update-btn" type="submit" value="Update">
+                    </form>
 
-			<li class="users-list">
-
-				<p>
-					${user['first_name']}
-					${user['last_name']} - 
-					${user['email']}
-				</p>
-
-				<form action="update-user.php" method="GET" class="update">
-					<input name="userId" type="hidden" value="${user['id']}">
-					<input class="update-btn" type="submit" value="Update">
-				</form>
-
-				<form action="" method="POST">
-					<input name="userId" type="hidden" value="${user['id']}">
-					<input name="deleteUserBtn" type="submit" value="Delete" class="delete-btn">
-				</form>
-				
-			</li>
+                    <form action="" method="POST" class="deleteBtn">
+                        <input name="userId" type="hidden" value="${user['id']}">
+                        <input name="deleteUserBtn" type="submit" value="Delete" class="delete-btn">
+                    </form>
+                </td>
+            </tr>
             `
         }
-        document.querySelector('#user-list').innerHTML = (html);
+        document.querySelector('#user-table tbody').innerHTML = (html);
         document.querySelector('#form-message').innerHTML = (data['message']);
     } catch(error){
         console.log(error);

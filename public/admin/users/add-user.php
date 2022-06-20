@@ -68,6 +68,11 @@ if(isset($_POST['addUserBtn'])) {
 		";
 	} else {
 		$useradminDbHandler->addUser($first_name, $last_name, $email, $password, $phone, $street, $postal_code, $city, $country);
+		$message = "
+			<div>
+				Ny användare är skapad!
+			</div>
+		";
 	}
 }
 

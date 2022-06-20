@@ -10,39 +10,114 @@
 }
 .new-user-section{
     width: 100%;
-    height: auto;
-    padding: 20px 40px;
-    max-width: 1200px;
-}
-#add-user-form{
-    background-color: var(--sand);
-    padding: 20px;
-    border-radius: 3px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    margin: 40px 0px;
+}
+.new-user-wrapper{
+    width: 70%;
+}
+#add-user-form{
+    background-color: var(--sand);
+    padding: 30px;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+#field-wrapper{
+    width: 48.5%;
 }
 .inputfield{
-    width: 45%;
+    width: 100%;
     height: 45px;
     padding: 10px;
     border-radius: 5px;
+    margin-bottom: 18px;
     border: none;
-    margin: 10px;
     font-family: var(--ff-rubrik);
+    margin-top: 5px;
 }
-.inputfield-long{
-    width: 94%;
+label{
+    font-family: var(--ff-rubrik);
+    color: var(--black);
+}
+.long{
+    width: 100%;
+}
+
+/* Manage users table */
+.manage-users-section{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 40px 0px;
+}
+table{
+    width: 70%;
+    border-radius: 3px;
+    border-collapse: collapse;
+    margin: 0 auto;
+    border: 1px solid var(--black);
+}
+thead{
+    text-transform: uppercase; 
+    font-family: var(--ff-rubrik);
+    color: var(--black);
+    background-color: var(--sand);
+    height: 40px;
+}
+th{
+    padding: 20px;
+}
+td{
+    height: 100px;
+    text-align: center;
+    font-family: var(--ff-bodytext);
+    color: rgb(92, 92, 92);
+    padding: 20px;
+    border: 1px solid var(--black);
+}
+
+/* Buttons and Messages */
+.buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 .add-user-btn{
     background-color: var(--green);
     border: none;
     border-radius: 5px;
-    margin-top: 40px;
+    margin: 10px 0px;
     color: var(--sand);
     font-family: var(--ff-rubrik);
     font-size: var(--fs-bodytext);
     width: 200px;
     height: 45px;
+}
+#form-message{
+    color: rgb(13, 106, 169);
+    margin-bottom: 10px;
+    line-height: 30px;
+    font-family: var(--ff-rubrik);
+}
+
+/* buttons inside table */
+.update-btn, .delete-btn{
+    width: 110px;
+    height: 40px;
+    background-color: var(--green);
+    border: none;
+    border-radius: 5px;
+    color: var(--sand);
+    font-family: var(--ff-rubrik);
+    font-size: var(--fs-bodytext-mobile);
+    margin-bottom: 10px;
+}
+.delete-btn{
+    background-color: #D16D6D;
+    margin-bottom: 0px;
 }

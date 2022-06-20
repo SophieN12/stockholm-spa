@@ -94,41 +94,86 @@ $users = $useradminDbHandler->fetchAllUsers();
 <body>
 
 	<section class="new-user-section">
-		<h1 class="rubrik">Create new user</h1>
-		<div id="form-message" > <?=$message?> </div>
 
-		<div class="new-user-form">
+		<div class="new-user-wrapper">
+
+			<h1 class="rubrik">Create new user</h1>
+			<div id="form-message" > <?=$message?> </div>
 
 			<!-- ny användare steg 2 -->
 			<form id="add-user-form" action="add-user.php" method="POST">
-				<input type="text" class="inputfield" name="first_name" placeholder="First Name">
-				<input type="text" class="inputfield" name="last_name" placeholder="Last Name">
-				<input type="text" class="inputfield inputfield-long" name="email" placeholder="E-mail">
-				<input type="text" class="inputfield" name="password" placeholder="Password">
-				<input type="text" class="inputfield" name="phone" placeholder="Phonenumber">
-				<input type="text" class="inputfield" name="street" placeholder="Street">
-				<input type="text" class="inputfield" name="postal_code" placeholder="Postal Code">
-				<input type="text" class="inputfield" name="city" placeholder="City">
-				<!-- <input type="text" class="" name="country" placeholder="Country"> -->
-				
-				<!-- <label for="country">Välj land</label> <br> -->
-				<select class="inputfield" name="country" id="country">
-					<option name="sweden" value="Sweden">Sweden</option>
-					<option name="Norway" value="Norway">Norway</option>
-					<option name="Denmark" value="Denmark">Denmark</option>
-					<option name="Finland" value="Finland">Finland</option>
-				</select>
 
-				<input class="add-user-btn" type="submit" name="addUserBtn" value="Add">
+				<div id="field-wrapper">
+					<label for="">Firstname</label>
+					<input type="text" class="inputfield" name="first_name" placeholder="First Name">
+				</div>
+				<div id="field-wrapper">
+					<label for="">Lastname</label>
+					<input type="text" class="inputfield" name="last_name" placeholder="Last Name">
+				</div>
+				<div id="field-wrapper">
+					<label for="">Password</label>
+					<input type="text" class="inputfield" name="password" placeholder="Password">
+				</div>
+				<div id="field-wrapper">
+					<label for="">Phonenumber</label>
+					<input type="text" class="inputfield" name="phone" placeholder="Phonenumber">
+				</div>
+				<div id="field-wrapper">
+					<label for="">Street</label>
+					<input type="text" class="inputfield" name="street" placeholder="Street">
+				</div>
+				<div id="field-wrapper">
+					<label for="">Postalcode</label>
+					<input type="text" class="inputfield" name="postal_code" placeholder="Postal Code">
+				</div>
+				<div id="field-wrapper">
+					<label for="">City</label>
+					<input type="text" class="inputfield" name="city" placeholder="City">
+				</div>
+					<!-- <input type="text" class="" name="country" placeholder="Country"> -->
+					
+					<!-- <label for="country">Välj land</label> <br> -->
+				<div id="field-wrapper">
+					<label for="">Choose Country</label>
+					<select class="inputfield" name="country" id="country">
+						<option name="sweden" value="Sweden">Sweden</option>
+						<option name="Norway" value="Norway">Norway</option>
+						<option name="Denmark" value="Denmark">Denmark</option>
+						<option name="Finland" value="Finland">Finland</option>
+					</select>
+				</div>
+
+				<div class="long">
+					<label for="">E-mail</label>
+					<input type="text" class="inputfield" name="email" placeholder="E-mail">
+				</div>
+				<div class="buttons">
+					<input class="add-user-btn" type="submit" name="addUserBtn" value="Add">
+				</div>
 			</form>
 		</div>
 	</section>
 
-	<ul id="user-list">
-	
-	</ul>
+	<section class="manage-users-section">
+		<table id="user-table">
+			<thead>
+				<tr>
+					<th>Namn</th>
+					<th>Email</th>
+					<th>ID</th>
+					<th>Phone</th>
+					<th>Adress</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
 
+			</tbody>
+		</table>
+	</section>
 	<script src="js/useradmin.js"></script>
+
 
 </body>
 </html>
