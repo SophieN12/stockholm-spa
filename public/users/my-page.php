@@ -135,6 +135,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/general.css">
+    <link rel="stylesheet" href="css/user-form.css">
     <title>My page</title>
 </head>
 <body>
@@ -143,58 +146,62 @@
         <h3>Update user information</h3>
         <p id="successMessage"><?=$successMessage?></p>
         <form action="" method="POST">
-                <label for="first_name">First Name</label><br>
-                <input type="text" name="first_name" value="<?=htmlentities($user['first_name'])?>"><br>
-                <p class="error"><?=$errorMessages['first_name'];?></p>
-                
-                <label for="last_name">Last Name</label><br>
-                <input type="text" name="last_name" value="<?=htmlentities($user['last_name'])?>"><br>
-                <p class="error"><?=$errorMessages['last_name'];?></p>
-                
-                <label for="street">Street</label><br>
-                <input type="text" name="street" value="<?=htmlentities($user['street'])?>"><br>
-                <p class="error"><?=$errorMessages['street'];?></p>
-                
-                <label for="postal_code">Postal Code</label><br>
-                <input type="text" name="postal_code" value="<?=htmlentities($user['postal_code'])?>"><br>
-                <p class="error"><?=$errorMessages['postal_code'];?></p>
-                
-                <label for="email">Email</label><br>
-                <input type="text" name="email" value="<?=htmlentities($user['email'])?>"><br>
-                <p class="error"><?=$errorMessages['email'];?></p>
-                <p class="error"><?=$errorMessages['emailError'];?></p>
-                
-                <label for="newPassword">New password</label><br>
-                <input type="password" name="newPassword" value=""><br>
-                <p class="error"><?=$errorMessages['password'];?></p>
-                
-                <label for="confirmPassword">Confirm new password</label><br>
-                <input type="password" name="confirmPassword" value=""><br>
-                <p class="error"><?=$errorMessages['confirmPassword'];?></p>
-                
-                <label for="phone">Phone number</label><br>
-                <input type="text" name="phone" value="<?=htmlentities($user['phone'])?>"><br>
-                <p class="error"><?=$errorMessages['phone'];?></p>
-                
-                <label for="city">City</label><br>
-                <input type="text" name="city" value="<?=htmlentities($user['city'])?>"><br>
-                <p class="error"><?=$errorMessages['city'];?></p>
-                
-                <label for="country">Country</label><br>
-                <select name="country" id="country">
-                    <option disabled selected value> -- select a country -- </option>
-                    <option value="SE" <?php echo ($user['country'] == "SE") ? 'selected' : '';?>>Sweden</option>
-                    <option value="NO" <?php echo ($user['country'] == "NO") ? 'selected' : '';?>>Norway</option>
-                    <option value="DK" <?php echo ($user['country'] == "DK") ? 'selected' : '';?>>Denmark</option>
-                    <option value="FI" <?php echo ($user['country'] == "FI") ? 'selected' : '';?>>Finland</option>
-                </select><br><br>
-                <p class="error"><?=$errorMessages['country'];?></p>
-                
-                <input type="submit" name="updateBtn" value="Update" id="submitBtn">
+            <div id="form-inputs">
+                <div id="left-side-form">
+                    <label for="first_name">First Name</label><br>
+                    <input type="text" name="first_name" value="<?=htmlentities($user['first_name'])?>"><br>
+                    <p class="error"><?=$errorMessages['first_name'];?></p>
+                    
+                    <label for="last_name">Last Name</label><br>
+                    <input type="text" name="last_name" value="<?=htmlentities($user['last_name'])?>"><br>
+                    <p class="error"><?=$errorMessages['last_name'];?></p>
+                    
+                    <label for="email">Email</label><br>
+                    <input type="text" name="email" value="<?=htmlentities($user['email'])?>"><br>
+                    <p class="error"><?=$errorMessages['email'];?></p>
+                    <p class="error"><?=$errorMessages['emailError'];?></p>
+    
+                    <label for="newPassword">New password</label><br>
+                    <input type="password" name="newPassword" value=""><br>
+                    <p class="error"><?=$errorMessages['password'];?></p>
+                    
+                    <label for="confirmPassword">Confirm new password</label><br>
+                    <input type="password" name="confirmPassword" value=""><br>
+                    <p class="error"><?=$errorMessages['confirmPassword'];?></p>
+                </div>
+                <div id="right-side-form">
+                    <label for="street">Street</label><br>
+                    <input type="text" name="street" value="<?=htmlentities($user['street'])?>"><br>
+                    <p class="error"><?=$errorMessages['street'];?></p>
+                    
+                    <label for="postal_code">Postal Code</label><br>
+                    <input type="text" name="postal_code" value="<?=htmlentities($user['postal_code'])?>"><br>
+                    <p class="error"><?=$errorMessages['postal_code'];?></p>
+                    
+                    <label for="phone">Phone number</label><br>
+                    <input type="text" name="phone" value="<?=htmlentities($user['phone'])?>"><br>
+                    <p class="error"><?=$errorMessages['phone'];?></p>
+                    
+                    <label for="city">City</label><br>
+                    <input type="text" name="city" value="<?=htmlentities($user['city'])?>"><br>
+                    <p class="error"><?=$errorMessages['city'];?></p>
+                    
+                    <label for="country">Country</label><br>
+                    <select name="country" id="country">
+                        <option disabled selected value> -- select a country -- </option>
+                        <option value="SE" <?php echo ($user['country'] == "SE") ? 'selected' : '';?>>Sweden</option>
+                        <option value="NO" <?php echo ($user['country'] == "NO") ? 'selected' : '';?>>Norway</option>
+                        <option value="DK" <?php echo ($user['country'] == "DK") ? 'selected' : '';?>>Denmark</option>
+                        <option value="FI" <?php echo ($user['country'] == "FI") ? 'selected' : '';?>>Finland</option>
+                    </select><br><br>
+                    <p class="error"><?=$errorMessages['country'];?></p>
+                </div>
+            </div>
+                <input id="submitBtn" type="submit" name="updateBtn" value="Update" id="submitBtn">
             </form><br>
             <form action="" method="POST">
                 <input type="hidden" name="id" value="<?=htmlentities($_SESSION['id'])?>">
-                <input type="submit" name="deleteBtn" value="Delete">
+                <input id="deleteBtn" type="submit" name="deleteBtn" value="Delete">
             </form>
         <a href="logout.php">Logout</a>
     </div>

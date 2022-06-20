@@ -5,7 +5,8 @@
     "left-side right-side";
 }
 
-#submitBtn {
+#submitBtn,
+#deleteBtn {
     display: block;
     width: 150px;
     margin: 40px auto;
@@ -17,7 +18,13 @@
     border-radius: 5px;
 }
 
-#submitBtn:hover{
+#deleteBtn {
+    background-color: #A56468;
+    margin-top: 0;
+}
+
+#submitBtn:hover,
+#deleteBtn:hover {
     opacity: 0.8;
 }
 
