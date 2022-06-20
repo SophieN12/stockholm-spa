@@ -7,6 +7,7 @@
     font-size: var(--fs-underrubrik);
     margin-bottom: 30px;
     margin-top: 40px;
+    width: 70%;
 }
 .new-user-section{
     width: 100%;
@@ -53,7 +54,7 @@ label{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 40px 0px;
+    margin: 40px 0px 100px 0px;
 }
 table{
     width: 70%;
@@ -77,8 +78,10 @@ td{
     text-align: center;
     font-family: var(--ff-bodytext);
     color: rgb(92, 92, 92);
-    padding: 20px;
+    padding: 15px;
     border: 1px solid var(--black);
+    line-height: 25px;
+    font-size: 14px;
 }
 
 /* Buttons and Messages */

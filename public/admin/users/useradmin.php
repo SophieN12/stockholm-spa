@@ -156,6 +156,7 @@ $users = $useradminDbHandler->fetchAllUsers();
 	</section>
 
 	<section class="manage-users-section">
+	<h1 class="rubrik">Manage users</h1>
 		<table id="user-table">
 			<thead>
 				<tr>
