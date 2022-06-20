@@ -22,7 +22,7 @@ $pageTitle = $product['title'];
         </div>
         <div class="product-description">
             <div class="product-desc-left">
-                <img src=../public/admin/products/<?=$product['img_url']?> class="img-large">
+                <img src="../admin/products/<?=$product['img_url']?>" class="img-large">
             </div>
             <div class="product-desc-right">
                 <h2><?= htmlentities($product['title']) ?></h2>
