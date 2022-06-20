@@ -1,13 +1,16 @@
 <?php
 require('../src/config.php');
 $product = $productsDbHandler->fetchSpecificProduct($_GET['productId']);
+$pageTitle = $product['title'];
 ?>
 
 <!DOCTYPE html>
 <html>
 
+<?php include('../public/layout/header.php'); ?>
+
 <head>
-    <title>Product</title>
+    <title><?= $pageTitle ?></title>
     <link rel="stylesheet" href="../public/css/products-page.css">
 </head>
 
@@ -19,7 +22,7 @@ $product = $productsDbHandler->fetchSpecificProduct($_GET['productId']);
         </div>
         <div class="product-description">
             <div class="product-desc-left">
-                <img src="<?= $product['img_url'] ?>" class="img-large">
+                <img src=../public/admin/products/<?=$product['img_url']?> class="img-large">
             </div>
             <div class="product-desc-right">
                 <h2><?= htmlentities($product['title']) ?></h2>
@@ -33,5 +36,7 @@ $product = $productsDbHandler->fetchSpecificProduct($_GET['productId']);
         </div>
     </div>
 </body>
+
+<?php include('../public/layout/footer.php'); ?>
 
 </html>

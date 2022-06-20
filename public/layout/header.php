@@ -2,11 +2,8 @@
 <html lang="sv"> 
 <head>
   <meta charset="utf-8">
-  
-  <title><?=$pageTitle?></title>
-
-  <link rel="stylesheet" type=""text/css" href="css/header.css"/>
-  <link rel="stylesheet" type=""text/css" href="css/footer.css"/>
+  <link rel="stylesheet" href="css/header.css"/>
+  <link rel="stylesheet" href="css/footer.css"/>
 </head>
 
 <header>
