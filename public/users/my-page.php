@@ -130,12 +130,11 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
+<?php include('../layout/header.php'); ?>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/user-form.css">
     <title>My page</title>
@@ -144,8 +143,8 @@
     <div id="container">
         <h1>My page</h1>
         <h3>Update user information</h3><br>
-        <p id="success" class="alert alert-success" role="alert"><?=$successMessage?></p>
-        <p id="error" class="alert alert-danger" role="alert"><?=$errorMessages?></p>
+        <p id="success"><?=$successMessage?></p>
+        <p id="error"><?=$errorMessages?></p>
         <form action="" method="POST">
             <div id="form-inputs">
                 <div id="left-side-form">
@@ -196,4 +195,7 @@
         <a href="logout.php">Logout</a>
     </div>
 </body>
+
+<?php include('../layout/footer.php'); ?>
+
 </html>

@@ -54,12 +54,11 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
+    
+<?php include('../layout/header.php'); ?>
+    
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="css/general.css">
     <title>Login</title>
@@ -67,11 +66,11 @@
 <body>
     <div id="container">
         <h1>Login</h1>
-        <p id="success" class="alert alert-success" role="alert"><?=$deletedUser?></p>
-        <p id="success" class="alert alert-success" role="alert"><?=$logout?></p>
-        <p id="error" class="alert alert-danger" role="alert"><?=$mustLogin?></p>
-        <p id="error" class="alert alert-danger" role="alert"><?=$incorrectLogin?></p>
-        <p id="error" class="alert alert-danger" role="alert"><?=$errorMessages?></p>
+        <p id="success"><?=$deletedUser?></p>
+        <p id="success"><?=$logout?></p>
+        <p id="error"><?=$mustLogin?></p>
+        <p id="error"><?=$incorrectLogin?></p>
+        <p id="error"><?=$errorMessages?></p>
         <form action="" method="POST">
             <div id="form-inputs">
                 <label for="email">Email*</label><br>
@@ -85,4 +84,7 @@
         <a href="my-page.php">My page</a>
     </div>
 </body>
+
+<?php include('../layout/footer.php'); ?>
+
 </html>

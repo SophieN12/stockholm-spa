@@ -16,12 +16,11 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
+<?php include('../layout/header.php'); ?>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="css/general.css">
     <link rel="stylesheet" href="css/user-form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -30,8 +29,8 @@
 <body>
     <div id="container">
         <h1>Create new user</h1>
-        <p id="success" class="alert alert-success" role="alert"><?=$successMessage?></p>
-        <p id="error" class="alert alert-danger" role="alert"><?=$errorMessages?></p>
+        <p id="success"><?=$successMessage?></p>
+        <p id="error"><?=$errorMessages?></p>
         <form id="add-user-form" action="" method="POST">
             <div id="form-inputs">
                 <div id="left-side-form">
@@ -87,8 +86,10 @@
             <input id="submitBtn" type="submit" name="createBtn" value="Create" id="submitBtn">
         </form><br>
         <a href="login.php">Login page</a><br><br>
-        <a href="../index.php">&#8592 Back</a>
     </div>
     <script src="js/add-user.js"></script>
 </body>
+
+<?php include('../layout/footer.php'); ?>
+
 </html>
