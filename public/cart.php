@@ -4,6 +4,10 @@
   // print_r($_SESSION['cartItems']);
   // echo "</pre>";
 
+  if (!isset($_SESSION['cartItems'])) {
+    $_SESSION['cartItems'] = [];
+  }
+
   $cartItemCount = count($_SESSION['cartItems']);
   $cartTotalSum = 0;
   foreach ($_SESSION['cartItems'] as $cartId => $cartItem) {
@@ -47,7 +51,7 @@
 
     <div class="row">
       <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-        <a href="checkout.php" class="btn btn-primary btn-block">Checkout</a>
+        <a href="../products/checkout.php" class="btn btn-primary btn-block">Checkout</a>
       </div>
     </div>
   </div>
