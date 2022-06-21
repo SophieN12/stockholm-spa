@@ -68,6 +68,11 @@ if(isset($_POST['updateUserBtn'])) {
 		";
 	} else {
         $useradminDbHandler->updateUser($_GET['userId'], $first_name, $last_name, $email, $password, $phone, $street, $postal_code, $city, $country);
+		$message = "
+		<div>
+			Användaren är uppdaterad!
+		</div>
+	";
 	}
 }
 
@@ -87,40 +92,67 @@ $user = $useradminDbHandler->fetchSpecificUser();
 ?>
 
 <?php include('../layout/header.php'); ?>
+<link rel="stylesheet" type=""text/css" href="../css/useradmin.css"/>
 
-<div class="update-user-form">
-    <h3 class="rubrik">Uppdatera inlägg</h3>
+<section class="new-user-section">
 
-    <?=$message ?>
+	<div class="update-user-form new-user-wrapper">
+		
+		<h1 class="rubrik">Update user</h1>
+		<div id="form-message" > <?=$message?> </div>
 
-    <!-- nytt posts steg 2 -->
-    <form action="" method="POST">
-        <div>
-            <input type="text" class="" name="first_name" placeholder="First Name" value="<?=htmlentities($user['first_name'])?>">
-            <input type="text" class="" name="last_name" placeholder="Last Name" value="<?=htmlentities($user['last_name'])?>">
-            <input type="text" class="" name="email" placeholder="E-mail" value="<?=htmlentities($user['email'])?>">
-            <input type="text" class="" name="password" placeholder="Password" value="<?=htmlentities($user['password'])?>">
-            <input type="text" class="" name="phone" placeholder="Phonenumber" value="<?=htmlentities($user['phone'])?>">
-            <input type="text" class="" name="street" placeholder="Street" value="<?=htmlentities($user['street'])?>">
-            <input type="text" class="" name="postal_code" placeholder="Postal Code" value="<?=htmlentities($user['postal_code'])?>">
-            <input type="text" class="" name="city" placeholder="City" value="<?=htmlentities($user['city'])?>">
-            <!-- <input type="text" class="" name="country" placeholder="Country" value="<?=htmlentities($user['country'])?>"> -->
+		<form id="add-user-form" action="" method="POST">
+			<div id="field-wrapper">
+				<label for="">Firstname</label>
+				<input type="text" class="inputfield" name="first_name" placeholder="First Name" value="<?=htmlentities($user['first_name'])?>">
+			</div>
+			<div id="field-wrapper">
+				<label for="">Lastname</label>
+				<input type="text" class="inputfield" name="last_name" placeholder="Last Name" value="<?=htmlentities($user['last_name'])?>">
+			</div>
+			<div id="field-wrapper">
+				<label for="">Password</label>
+				<input type="text" class="inputfield" name="password" placeholder="Password" value="<?=htmlentities($user['password'])?>">
+			</div>
+			<div id="field-wrapper">
+				<label for="">Phonenumber</label>
+				<input type="text" class="inputfield" name="phone" placeholder="Phonenumber" value="<?=htmlentities($user['phone'])?>">
+			</div>
+			<div id="field-wrapper">
+				<label for="">Street</label>
+				<input type="text" class="inputfield" name="street" placeholder="Street" value="<?=htmlentities($user['street'])?>">
+			</div>
+			<div id="field-wrapper">
+				<label for="">Postalcode</label>
+				<input type="text" class="inputfield" name="postal_code" placeholder="Postal Code" value="<?=htmlentities($user['postal_code'])?>">
+			</div>
+			<div id="field-wrapper">
+				<label for="">City</label>
+				<input type="text" class="inputfield" name="city" placeholder="City" value="<?=htmlentities($user['city'])?>">
+			</div>
+				
+			<div id="field-wrapper">
+				<label for="">Choose Country</label>
+				<select class="inputfield" name="country" id="country" value="<?=htmlentities($user['country'])?>">
+					<option selected><?=htmlentities($user['country'])?></option>
+					<option name="sweden" value="Sweden">Sweden</option>
+					<option name="Norway" value="Norway">Norway</option>
+					<option name="Denmark" value="Denmark">Denmark</option>
+					<option name="Finland" value="Finland">Finland</option>
+				</select>
+			</div>
 
-            <label for="country">Välj land</label>
-            <select name="country" id="country" value="<?=htmlentities($user['country'])?>">
-                <option selected><?=htmlentities($user['country'])?></option>
-                <option name="sweden" value="Sweden">Sweden</option>
-                <option name="Norway" value="Norway">Norway</option>
-                <option name="Denmark" value="Denmark">Denmark</option>
-                <option name="Finland" value="Finland">Finland</option>
-            </select>
+			<div class="long">
+				<label for="">E-mail</label>
+				<input type="text" class="inputfield" name="email" placeholder="E-mail" value="<?=htmlentities($user['email'])?>">
+			</div>
+		</form>
 
-            <div class="buttons">
-                <input type="submit" name="updateUserBtn" value="Uppdatera"class="update-btn"> 
-                <a class="back-link" href="useradmin.php">Tillbaka</a>
-            </div>  
-        </div>
-    </form>
-</div>
+		<div class="buttons update-buttons">
+			<input type="submit" name="updateUserBtn" value="Uppdatera"class="add-user-btn"> 
+			<a class="add-user-btn return-btn" href="useradmin.php">Tillbaka</a>
+		</div>
+	</div>
+</section>
 
 <?php include('../layout/footer.php'); ?>
