@@ -3,10 +3,10 @@ require('../../src/config.php');
 $products = $productsDbHandler->fetchAllProducts();
 ?>
 
+<?php include('../layout/header.php'); ?>
+
 <!DOCTYPE html>
 <html>
-
-<?php include('../layout/header.php'); ?>
 
 <head>
     <title>Stockholm Spa</title>
@@ -20,7 +20,7 @@ $products = $productsDbHandler->fetchAllProducts();
             <?php foreach ($products as $product) { ?>
                 <li>
                     <a href="product.php?productId=<?= $product['id'] ?>">
-                        <img src=../public/admin/products/<?=$product['img_url']?> class="grid-img">
+                        <img src="../admin/products/<?=$product['img_url']?>" class="grid-img">
                         <div class="product-grid-info">
                             <div class="product-grid-info-left">
                                 <h3><?= htmlentities($product['title']) ?></h3>
@@ -28,14 +28,17 @@ $products = $productsDbHandler->fetchAllProducts();
                             </div>
                     </a>
                     <div class="product-grid-info-right">
-                        <button class="btn">Add to cart</button>
+                        <form id="add-cart-form" action="../add-cart-item.php" method="POST">
+                            <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+                            <input type="number" class="grid-qt-input" name="quantity" value="1" min="0">
+                            <input type="submit" class="btn grid-add-btn" name="addToCart" value="Add to cart">
+                        </form>
                     </div>
                 </li>
             <?php } ?>
         </ul>
     </div>
 </body>
+</html>
 
 <?php include('../layout/footer.php'); ?>
-
-</html>

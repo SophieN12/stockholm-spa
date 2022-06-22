@@ -47,6 +47,61 @@ li, .link{
     border-bottom: solid 2px var(--black);
 }
 
+/* cart styling */
+.dropdown-menu {
+    min-width: 400px;
+    font-family: var(--ff-bodytext);
+}
+
+.cart-detail {
+    margin: 15px 20px;
+}
+
+.cart-detail-product {
+    margin-left: 20px;
+}
+
+.cart-detail-product > p {
+    font-family: var(--ff-rubrik);
+    font-size: 16px;
+
+    margin: 0;
+}
+
+.cart-price {
+    color: var(--green);
+}
+
+.cart-quantity {
+    margin-left: 20px;
+}
+
+.total-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 20px -10px;
+}
+
+.checkout {
+    margin: 10px;
+}
+
+.btn-checkout {
+    width: 75%;
+    font-family: var(--ff-rubrik);
+    background-color: var(--green);
+    border: none;
+    border-radius: 5px;
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-checkout:hover {
+    background-color: var(--green);
+	color: var(--white);	
+    box-shadow: 0px 0px 0px 4px #7c8e748d;
+}
 
 /* vanlig navugering försvinner och ersätts med hamburger-menu */
 @media screen and (max-width: 1300px ) {
