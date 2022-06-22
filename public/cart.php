@@ -27,31 +27,30 @@
   <button class="btn btn-secondary dropdown-toggle" type="button" id="shoppingCartButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Shopping cart
   </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-    <span class="badge badge-pill badge-dangeer"><?=$cartItemCount?></span>
-
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
     <?php foreach($_SESSION['cartItems'] as $cartId => $cartItem): ?>
-      <div class="row cart-detal">
-      <img src="../admin/products/<?=$cartItem['img_url']?>" width="100">
-      </div>
-      <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-        <p><?=$cartItem['title']?></p>
-        <span class="price text-info"><?=$cartItem['price']?> SEK</span><span class="count"><?=$cartItem['quantity']?></span>
+      <div class="cart-detail row">
+        <img src="../admin/products/<?=$cartItem['img_url']?>" width="100">
+        <div class="cart-detail-product">
+          <p><?=$cartItem['title']?></p>
+          <span class="cart-price"><?=$cartItem['price']?> SEK</span>
+          <span class="cart-quantity">Quantity: <?=$cartItem['quantity']?></span>
+        </div>
       </div>
     <?php endforeach; ?>
 
     <div class="dropdown-divider"></div>
 
-    <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
-      <p>Total <span class="text-info"><?=$cartTotalSum ?> SEK</span></p>
+    <div class="total-section">
+      <p>Total</p>
+      <p><span class="cart-price"><?=$cartTotalSum ?></span> SEK</p>
     </div>
 
     <div class="dropdown-divider"></div>
 
     <div class="row">
       <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-        <a href="../products/checkout.php" class="btn btn-primary btn-block">Checkout</a>
+        <a href="../products/checkout.php" class="btn btn-checkout">Checkout</a>
       </div>
     </div>
   </div>

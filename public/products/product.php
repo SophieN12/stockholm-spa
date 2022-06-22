@@ -18,7 +18,8 @@ $pageTitle = $product['title'];
     <div class="container">
         <div class="product-navigation">
             <a href="index.php">
-                << Go back to all products</a>
+                << Go back to all products
+            </a>
         </div>
         <div class="product-description">
             <div class="product-desc-left">
@@ -31,7 +32,11 @@ $pageTitle = $product['title'];
                     <p><?= htmlentities($product['stock']) ?> in stock</p>
                 </div>
                 <p><?= htmlentities($product['description']) ?></p>
-                <button>Add to cart</button>
+                <form id="add-cart-product" action="../add-cart-item.php" method="POST">
+                    <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+                    <input type="number" class="grid-qt-input" name="quantity" value="1" min="0">
+                    <input type="submit" class="btn product-add-btn" name="addToCart" value="Add to cart">
+                </form>
             </div>
         </div>
     </div>

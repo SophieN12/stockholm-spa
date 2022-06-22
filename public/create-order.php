@@ -88,7 +88,7 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
         $stmt->execute();
     }
 
-    header('Location: order-confirmation.php');
+    header('Location: ../public/products/order-confirmation.php');
     exit;
 }
 

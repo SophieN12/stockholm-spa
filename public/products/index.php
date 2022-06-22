@@ -28,10 +28,10 @@ $products = $productsDbHandler->fetchAllProducts();
                             </div>
                     </a>
                     <div class="product-grid-info-right">
-                        <form action="../add-cart-item.php" method="POST">
+                        <form id="add-cart-form" action="../add-cart-item.php" method="POST">
                             <input type="hidden" name="productId" value="<?= $product['id'] ?>">
-                            <input type="number" name="quantity" value="1" min="0">
-                            <input type="submit" name="addToCart" value="Add to cart">
+                            <input type="number" class="grid-qt-input" name="quantity" value="1" min="0">
+                            <input type="submit" class="btn grid-add-btn" name="addToCart" value="Add to cart">
                         </form>
                     </div>
                 </li>
