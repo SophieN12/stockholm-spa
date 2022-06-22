@@ -17,11 +17,11 @@ $pageTitle = 'Checkout';
 <body>
     <div class="container">
         <h3>Checkout</h3>
-        <section class="cart-item-list">
+        <section class="checkout-item-list">
             <ul>
                 <?php foreach($_SESSION['cartItems'] as $cartId => $cartItem): ?>
                     <li>
-                        <article class="cart-item-module">
+                        <article class="checkout-item-module">
                             <img src="../admin/products/<?=$cartItem['img_url']?>" width="250">
                             <div class="cart-item-details">
                                 <h4><?=$cartItem['title']?></h4>
@@ -48,13 +48,74 @@ $pageTitle = 'Checkout';
             </ul>
         </section>
 
-        <section class="cart-sidebar">
+        <section class="checkout-sidebar">
             <tfoot class="table-foot">
                 <tr>
                    <th class="total-sum-title">Summa</th> 
                    <th class="total-sum"><?=$cartTotalSum?></th>
                 </tr>
             </tfoot>
+        </section>
+
+        <section class="checkout-bot">
+            <form action="../create-order.php" method="POST">
+                <input type="hidden" name="cartTotalSum" value="<?=$cartTotalSum?>">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="first-name">First name</label>
+                        <input type="text" class="form-control" name="firstName" id="first-name" placeholder="First name">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="last-name">Last name</label>
+                        <input type="text" class="form-control" name="lastName" id="last-name" placeholder="Last name">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="input-email">E-mail</label>
+                        <input type="email" class="form-control" name="email" id="input-email" placeholder="E-mail">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="input-password">Password</label>
+                        <input type="password" class="form-control" name="password" id="input-password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-groupe col-md-6">
+                        <label for="input-adress">Adress</label>
+                        <input type="text" class="form-control" name="street" id="input-adress" placeholder="Kungsgatan 1">
+                    </div>
+                    <div class="form-groupe col-md-6">
+                        <label for="input-zip">Zip code</label>
+                        <input type="text" class="form-control" name="postalCode" id="input-zip">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-groupe col-md-6">
+                        <label for="phone">Phone</label>
+                        <input type="text" class="form-control" name="phone" id="phone">
+                    </div>
+                    <div class="form-groupe col-md-3">
+                    <label for="input-city">City</label>
+                        <input type="text" class="form-control" name="city" id="input-city">        
+                    </div>
+                    <div class="form-groupe col-md-3">
+                        <label for="input-country">Country</label>
+                        <select name="country" id="input-country" class="form-control">
+                            <option value="se">Sweden</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="formCheck">
+                        <label class="form-check-label" for="formCheck">
+                            Have read and agreed to the terms & conditions.
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" name="createOrderBtn" class="btn btn-info">Complete purchase</button>
+            </form>
         </section>
     </div>
      
