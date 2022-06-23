@@ -1,0 +1,100 @@
+@import '../css/general.css';
+
+.container > h1 {
+    font-family: var(--ff-rubrik);
+    color: var(--black);
+    margin: 50px 0;
+}
+
+.container {
+    width: 1000px;
+    margin: 0 auto 60px;
+}
+
+.inner-container {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+    column-gap: 25px;
+}
+
+.checkout-item-module {
+    display: grid;
+    grid-template-columns: 1fr 2fr 0.1fr 0.1fr;
+    column-gap: 20px;
+    margin-bottom: 40px;
+}
+
+.cart-item-details > h4 {
+    font-size: 20px;
+}
+
+.cart-item-details > p {
+    color: var(--green);
+    font-family: var(--ff-bodytext);
+    font-size: 15px;
+    margin-bottom: 0;
+}
+
+.update-cart-form > input[type=number]{
+    font-size: 16px;
+    width: 70px;
+    height: 38px;
+    font-family: var(--ff-bodytext);
+}
+
+.checkout-sidebar {
+    background-color: var(--sand);
+    padding: 20px;
+    height: 600px;
+}
+
+.checkout-sidebar > form {
+    font-size: 12px;
+}
+
+.total-section {
+    font-family: var(--ff-bodytext);
+}
+
+.form-control:focus{
+    box-shadow: 0 0 0 0.25rem #7c8e7490;
+    border-color: var(--green)
+}
+
+.checkout-button-submit {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* confirmation css */
+.confirmation-item-module {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    column-gap: 20px;
+    margin-bottom: 40px;
+}
+
+.confirmation-item-details > h4 {
+    font-size: 20px;
+}
+
+.confirmation-item-details > p {
+    font-family: var(--ff-bodytext);
+    font-size: 15px;
+    margin-bottom: 0;
+}
+
+.confirmation-detail-total {
+    color: var(--green);
+    font-family: var(--ff-bodytext);
+    font-size: 15px;
+    margin-right: 40px;
+}
+
+.order-total {
+    font-family: var(--ff-bodytext);
+    background-color: var(--sand);
+    padding: 40px;
+    margin: 10px;
+    text-align: center;
+}

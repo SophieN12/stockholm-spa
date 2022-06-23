@@ -32,6 +32,9 @@ require(SRC_PATH . '/dbconnect.php');
 require(SRC_PATH . '/app/common_functions.php');
 require(SRC_PATH . '/app/ProductsDbHandler.php');
 $productsDbHandler = new ProductsDbHandler($pdo);
+require(SRC_PATH . '/app/userFunctions.php');
+require(SRC_PATH . '/app/UsersDbHandler.php');
+$usersDbHandler = new UsersDbHandler($pdo);
 
 require(SRC_PATH . '/app/UseradminDbHandler.php');
 $useradminDbHandler = new UseradminDbHandler($pdo);

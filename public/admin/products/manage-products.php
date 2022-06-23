@@ -23,17 +23,9 @@
 	}
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> <?= $pageTitle ?></title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/products.css"/>
-</head>
-<body>
+<?php include('../layout/header.php'); ?>	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type=""text/css" href="../css/products.css"/>
 
 	<div class="container">
 		<h1> <a href="manage-products.php">Manage product</a> </h1>
@@ -83,3 +75,4 @@
 	</div>
 
 <?php include('../layout/footer.php'); ?>
+

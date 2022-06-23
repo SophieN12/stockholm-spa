@@ -1,0 +1,55 @@
+#form-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+    "left-side right-side";
+}
+
+#submitBtn,
+#deleteBtn {
+    display: block;
+    width: 150px;
+    margin: 40px auto;
+    margin-bottom: 0;
+    background-color: var(--green);
+    color: white;
+    font-family: var(--fs-bodytext);
+    font-size: large;
+    border-radius: 5px;
+}
+
+#deleteBtn {
+    background-color: #A56468;
+    margin-top: 0;
+}
+
+#submitBtn:hover,
+#deleteBtn:hover {
+    opacity: 0.8;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
+    padding-right: 20px;
+    border: none;
+    border-radius: 10px;
+    margin-top: 8px;
+}
+
+select:-webkit-autofill,
+select:-webkit-autofill:hover, 
+select:-webkit-autofill:focus, 
+select:-webkit-autofill:active{
+    box-shadow: 0 0 0 30px white inset !important;
+}
+
+#left-side-form {
+    grid-area: left-side;
+    margin-right: 30px;
+}
+
+#right-side-form {
+    grid-area: right-side;
+    margin-left: 30px;
+}

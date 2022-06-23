@@ -110,7 +110,7 @@
                 </div>
                 
                 <div class="form-floating mb-3">
-                    <textarea class="form-control" id="floatingTextarea2" style="height: 200px" name="description"> <?=htmlentities($product['description'])?></textarea>
+                    <textarea class="form-control" id="floatingTextarea2" style="height: 200px" name="description"> <?=htmlentities($description)?></textarea>
                     <label for="floatingTextarea2">Description *</label>
                 </div>
 
@@ -132,5 +132,5 @@
 
         </div>
     </div>
-
-<?php include('../layout/footer.php');?> 
+</body>
+</html>
