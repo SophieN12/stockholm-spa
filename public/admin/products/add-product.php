@@ -132,5 +132,5 @@
 
         </div>
     </div>
-
-<?php include('../layout/footer.php');?> 
+</body>
+</html>
