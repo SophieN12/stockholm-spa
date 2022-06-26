@@ -114,14 +114,6 @@ td{
     align-items: center;
     margin-left: 20px;
 }
-#form-message{
-    color: rgb(13, 106, 169);
-    margin-bottom: 10px;
-    line-height: 30px;
-    font-family: var(--ff-rubrik);
-}
-
-/* buttons inside table */
 .update-btn, .delete-btn{
     width: 110px;
     height: 40px;
@@ -137,3 +129,23 @@ td{
     background-color: #D16D6D;
     margin-bottom: 0px;
 }
+
+/* error messages */
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+}
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+}
+.error:empty, .success:empty {
+    display: none;
+}
+
