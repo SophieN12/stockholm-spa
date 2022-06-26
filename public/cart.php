@@ -24,9 +24,7 @@
 ?>
 
 <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="shoppingCartButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Shopping cart
-  </button>
+  <img id="shoppingcart" src="../img/img-header/shoppingcart.svg" alt="shoppingcart icon" class="link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
     <?php foreach($_SESSION['cartItems'] as $cartId => $cartItem): ?>
       <div class="cart-detail row">

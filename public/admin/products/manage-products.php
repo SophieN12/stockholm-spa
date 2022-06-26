@@ -1,4 +1,5 @@
 <?php 
+	$pageId = "admin";
     $pageTitle = "Admin Page";
     require('../../../src/config.php');
 

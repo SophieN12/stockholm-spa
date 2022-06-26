@@ -1,5 +1,6 @@
 <?php
 require('../../src/config.php');
+$pageId = "products";
 $products = $productsDbHandler->fetchAllProducts();
 
 if (isset($_POST['submitSearch'])) {

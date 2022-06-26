@@ -1,5 +1,6 @@
 <?php
 require('../../../src/config.php');
+$pageId = "admin";
 $pageTitle = "Admin Users";
 
 $message	="";

@@ -10,25 +10,83 @@ header{
     align-items: center;
     padding: 0 30px;
 }
-.nav_list{
-    display: flex;
+
+.navbar {
+    overflow: hidden;
 }
-li, .link{
+
+.navbar a {
+    float: left;
+    text-decoration: none;
+    text-align: center;
+}
+
+.link {
     font-family:var(--ff-rubrik) ;
     font-weight: 200;
     font-size: var(--fs-bodytext);
     color: var(--black);
-    text-decoration: none;
-    list-style: none;
-    margin-left: 15px;
 }
-.navbar:hover{
-    padding-bottom: 3px;
+
+#products-link,
+#admin-link {
+    text-decoration: none;
+    color: black;
+    border-bottom: 2px solid transparent;
+}
+
+#products-link:hover,
+#admin-link:hover {
     border-bottom: solid 2px var(--black);
 }
-.hamburgermenu{
+
+.marked {
+    border-bottom: solid 2px var(--black) !important;
+}
+
+.dropdown-nav {
+    float: left;
+    overflow: hidden;
+    margin-left: 30px;
+}
+
+.dropdown-nav-content {
+    display: none;
+    position: absolute;
+    background-color: var(--sand);
+    padding: 5px;
+    padding-left: 0;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    position: fixed !important;
+    top: auto !important;
+}
+
+.dropdown-nav:hover #admin-link {
+    border-bottom: solid 2px var(--black);
+}
+
+.manage-links:hover {
+    background:rgba(255,255,255, 0.4);
+    text-decoration: none;
+}
+
+.dropdown-nav-content a {
+    float: none;
+    display: block;
+    text-align: left;
+    color: inherit;
+}
+
+.dropdown-nav:hover .dropdown-nav-content {
     display: block;
 }
+
+button {
+    border: none;
+    background-color: var(--sand);
+}
+
 .logo{
     position: absolute; 
     left: 0; 
@@ -37,16 +95,75 @@ li, .link{
     margin: auto auto;
     width: 160px; 
 }
-#search{
-    padding-bottom: 6px;
-    margin-right: 10px;
+
+#my-page-icon {
+    margin-top: 5px;
 }
 
-.active{
-    padding-bottom: 3px;
-    border-bottom: solid 2px var(--black);
+#shoppingcart {
+    cursor: pointer;
+    margin-left: 20px;
 }
 
+/* cart styling */
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-menu {
+    min-width: 400px;
+    font-family: var(--ff-bodytext);
+}
+
+.cart-detail {
+    margin: 15px 20px;
+}
+
+.cart-detail-product {
+    margin-left: 20px;
+}
+
+.cart-detail-product > p {
+    font-family: var(--ff-rubrik);
+    font-size: 16px;
+
+    margin: 0;
+}
+
+.cart-price {
+    color: var(--green);
+}
+
+.cart-quantity {
+    margin-left: 20px;
+}
+
+.total-section {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 20px -10px;
+}
+
+.checkout {
+    margin: 10px;
+}
+
+.btn-checkout {
+    width: 75%;
+    font-family: var(--ff-rubrik);
+    background-color: var(--green);
+    border: none;
+    border-radius: 5px;
+    color: var(--white);
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-checkout:hover {
+    background-color: var(--green);
+	color: var(--white);	
+    box-shadow: 0px 0px 0px 4px #7c8e748d;
+}
 
 /* vanlig navugering försvinner och ersätts med hamburger-menu */
 @media screen and (max-width: 1300px ) {
