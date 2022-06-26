@@ -66,7 +66,19 @@ class ProductsDbHandler {
         $stmt->bindParam(':img_url', $imgUrl);
         $stmt->execute();
     }
-}
 
+    public function searchProduct() {
+        $searchResult = trim($_POST['search-result']);
+        $sql = "
+        SELECT * FROM products
+        WHERE title like :search;
+        ";
+    
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(':search', $searchResult . '%');
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+}
 ?>
 

@@ -1,6 +1,12 @@
 <?php
 require('../../src/config.php');
 $products = $productsDbHandler->fetchAllProducts();
+
+if (isset($_POST['submitSearch'])) {
+    $products = $productsDbHandler->searchProduct();
+} else {
+    $products = $productsDbHandler->fetchAllProducts();
+}
 ?>
 
 <?php include('../layout/header.php'); ?>
@@ -15,12 +21,28 @@ $products = $productsDbHandler->fetchAllProducts();
 
 <body>
     <div class="container">
-        <h1>All products</h1>
+        <div id="title-search-div">
+            <h1>Products</h1>
+
+            <div class="search-dropdown dropdown">
+                <button class="btn btn-secondary dropdown-toggle dropdown-toggle-search" type="button" id="shoppingCartButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Search product
+                </button>
+
+                <div class="search-dropdown-menu dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <form id="search-product-form" class="d-flex" role="search" method="POST">
+                        <input class="form-control p-2" id="search-bar" name="search-result" type="search" placeholder="Search by product name" aria-label="Search">
+                        <input type="submit" class="btn grid-add-btn" id="submit-search" name="submitSearch" value="Search">
+                    </form>
+                </div>
+            </div>
+        </div>
+
         <ul id="product-grid">
             <?php foreach ($products as $product) { ?>
                 <li>
                     <a href="product.php?productId=<?= $product['id'] ?>">
-                        <img src="../admin/products/<?=$product['img_url']?>" class="grid-img">
+                        <img src="../admin/products/<?= $product['img_url'] ?>" class="grid-img">
                         <div class="product-grid-info">
                             <div class="product-grid-info-left">
                                 <h3><?= htmlentities($product['title']) ?></h3>
@@ -39,6 +61,7 @@ $products = $productsDbHandler->fetchAllProducts();
         </ul>
     </div>
 </body>
+
 </html>
 
 <?php include('../layout/footer.php'); ?>

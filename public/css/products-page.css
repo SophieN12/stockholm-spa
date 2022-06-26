@@ -1,9 +1,14 @@
 @import '../css/general.css';
 
-.container > h1 {
+#title-search-div {
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0;
+}
+
+#title-search-div > h1 {
     font-family: var(--ff-rubrik);
     color: var(--black);
-    margin: 50px 0;
 }
 
 h2 {
@@ -13,6 +18,10 @@ h2 {
 
 h3 {
     font-size: 18px;
+}
+
+#search-product-form > input {
+   margin: 5px 15px;
 }
 
 .container {
@@ -50,7 +59,7 @@ h3 {
     width: 50px;
 }
 
-.grid-add-btn {
+.grid-add-btn, .dropdown-toggle-search {
     font-family: var(--ff-rubrik);
     background-color: var(--green);
     border: none;
@@ -62,7 +71,7 @@ h3 {
     margin-top: 10px;
 }
 
-.grid-add-btn:hover {
+.grid-add-btn:hover, .dropdown-toggle-search:hover {
     background-color: var(--green);
 	color: var(--white);	
     box-shadow: 0px 0px 0px 4px #7c8e748d;
