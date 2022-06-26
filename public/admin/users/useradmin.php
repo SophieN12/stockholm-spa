@@ -3,6 +3,7 @@ require('../../../src/config.php');
 $pageTitle = "Admin Users";
 
 $message	="";
+$successmessage	="";
 // $message	="";
 // $error		="";
 // $first_name	="";
@@ -98,7 +99,8 @@ $users = $useradminDbHandler->fetchAllUsers();
 		<div class="new-user-wrapper">
 
 			<h1 class="rubrik">Create new user</h1>
-			<div id="form-message" > <?=$message?> </div>
+			<div id="form-message" class="error"><?=$message?></div>
+			<div id="form-message-success" class="success"><?=$successmessage?></div>
 
 			<!-- ny användare steg 2 -->
 			<form id="add-user-form" action="add-user.php" method="POST">

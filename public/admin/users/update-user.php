@@ -2,6 +2,7 @@
 require('../../../src/config.php');
 $pageTitle = "Update user";
 
+$successMessage="";
 $message	="";
 $error		="";
 $first_name	="";
@@ -68,14 +69,13 @@ if(isset($_POST['updateUserBtn'])) {
 		";
 	} else {
         $useradminDbHandler->updateUser($_GET['userId'], $first_name, $last_name, $email, $password, $phone, $street, $postal_code, $city, $country);
-		$message = "
+		$successMessage = "
 		<div>
 			Användaren är uppdaterad!
 		</div>
 		";
 	}
 }
-
 
 //fetch specific user
 // $sql = "
@@ -99,7 +99,8 @@ $user = $useradminDbHandler->fetchSpecificUser();
 	<div class="new-user-wrapper">
 		
 		<h1 class="rubrik">Update user</h1>
-		<div id="form-message" > <?=$message?> </div>
+		<div class="error"><?=$message?></div>
+		<div class="success"><?=$successMessage?></div>
 
 		<form id="add-user-form" action="" method="POST">
 				<div id="field-wrapper">
@@ -141,12 +142,10 @@ $user = $useradminDbHandler->fetchSpecificUser();
 						<option name="Finland" value="Finland">Finland</option>
 					</select>
 				</div>
-
 				<div class="long">
 					<label for="">Email</label>
 					<input type="text" class="inputfield" name="email" placeholder="E-mail" value="<?=htmlentities($user['email'])?>">
 				</div>
-
 				<div class="buttons update-buttons">
 					<input type="submit" name="updateUserBtn" value="Uppdatera" class="add-user-btn"> 
 					<a class="add-user-btn return-btn" href="useradmin.php">Tillbaka</a>
