@@ -31,9 +31,8 @@ async function addUserEvent(e){
 
         const data = await response.json();
 
-        console.log(data);
         console.log(data ['message']);
-        console.log(data ['first_name']);
+        console.log(data ['successmessage']);
 
 
         html = "";
@@ -62,6 +61,7 @@ async function addUserEvent(e){
         }
         document.querySelector('#user-table tbody').innerHTML = (html);
         document.querySelector('#form-message').innerHTML = (data['message']);
+        document.querySelector('#form-message-success').innerHTML = (data['successmessage']);
     } catch(error){
         console.log(error);
     }

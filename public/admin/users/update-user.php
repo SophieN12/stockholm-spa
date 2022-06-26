@@ -2,6 +2,7 @@
 require('../../../src/config.php');
 $pageTitle = "Update user";
 
+$successMessage="";
 $message	="";
 $error		="";
 $first_name	="";

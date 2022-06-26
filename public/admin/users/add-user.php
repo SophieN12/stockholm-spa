@@ -1,7 +1,7 @@
 <?php
 require('../../../src/config.php');
 
-
+$successMessage="";
 $message	="";
 $error		="";
 $first_name	="";
@@ -68,7 +68,7 @@ if(isset($_POST['addUserBtn'])) {
 		";
 	} else {
 		$useradminDbHandler->addUser($first_name, $last_name, $email, $password, $phone, $street, $postal_code, $city, $country);
-		$message = "
+		$successMessage = "
 			<div>
 				Ny användare är skapad!
 			</div>
@@ -82,7 +82,8 @@ $users = $useradminDbHandler->fetchAllUsers();
 //output with JSON
 $data = [
     'message' => $message,
-    'users'   => $users
+    'users'   => $users,
+	'successmessage' => $successMessage
 ];
 
 echo json_encode($data);
