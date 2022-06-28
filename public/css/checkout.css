@@ -95,6 +95,9 @@
     font-family: var(--ff-bodytext);
     background-color: var(--sand);
     padding: 40px;
-    margin: 10px;
     text-align: center;
+}
+
+ul {
+    list-style: none;
 }

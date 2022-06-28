@@ -108,7 +108,10 @@ $pageTitle = 'Checkout';
                         <div class="form-group col-md-6">
                             <label for="input-country">Country</label>
                             <select name="country" id="input-country" class="form-control">
-                                <option value="se">Sweden</option>
+                                <option value="SE">Sweden</option>
+                                <option value="NO">Norway</option>
+                                <option value="DK">Denmark</option>
+                                <option value="FI">Finland</option>
                             </select>
                         </div>
                     </div>
