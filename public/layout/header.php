@@ -23,7 +23,7 @@
     
     <div class="header-icons">
         <a href="<?php if(isset($_SESSION['email'])) {echo "../users/my-page.php";} else {echo "../users/login.php";}?>">
-        <img id ="my-page-icon" src="../img/img-header/Group.svg" alt="" height="40"></a>
+        <img id ="my-page-icon" src="<?php if(isset($_SESSION['email'])) {echo "../img/img-header/group-check.svg";} else {echo "../img/img-header/Group.svg";}?>" height="40"></a>
         <?php include('../cart.php'); ?>
     </div>
 </header>
