@@ -1,5 +1,6 @@
 <?php 
     require('../../src/config.php');
+    $pageTitle = "new-user";
 
     $first_name         = "";
     $last_name          = "";

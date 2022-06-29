@@ -1,5 +1,6 @@
 <?php 
     require('../../src/config.php');
+    $pageTitle = "my-page";
 
     if (!isset($_SESSION['email'])) {
         redirect('login.php?mustLogin');

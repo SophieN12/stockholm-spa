@@ -1,5 +1,6 @@
 <?php 
     require('../../src/config.php');
+    $pageTitle = "login";
 
     $errorMessages = "";
     $email = "";
