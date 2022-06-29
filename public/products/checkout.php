@@ -139,5 +139,5 @@ $pageTitle = 'Checkout';
     </script>
 
 </body>
-
+<?php include('../layout/footer.php'); ?>
 </html>
