@@ -13,7 +13,7 @@ $street		="";
 $postal_code="";
 $city		="";
 $country	="";
-// Add user with validation
+
 if(isset($_POST['addUserBtn'])) {
 
 	$first_name		=trim($_POST['first_name']);
@@ -76,10 +76,8 @@ if(isset($_POST['addUserBtn'])) {
 	}
 }
 
-// Hämtar ALLA
 $users = $useradminDbHandler->fetchAllUsers();
 
-//output with JSON
 $data = [
     'message' => $message,
     'users'   => $users,
