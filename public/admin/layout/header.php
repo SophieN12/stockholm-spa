@@ -21,7 +21,7 @@
             </div>
     </nav>
 
-    <a href="../products/index.php"><img class="logo link" src="../img/img-header/logga_spa.svg" alt="Brand logo"></a>
+    <a href="../../products/index.php"><img class="logo link" src="../img/img-header/logga_spa.svg" alt="Brand logo"></a>
     
     <div class="header-icons">
         <a href="<?php if(isset($_SESSION['email'])) {echo "../../users/my-page.php";} else {echo "../../users/login.php";}?>">
