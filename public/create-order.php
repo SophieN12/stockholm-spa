@@ -41,11 +41,12 @@ if (isset($_POST['createOrderBtn']) && !empty($_SESSION['cartItems'])) {
             VALUES (:first_name, :last_name, :email, :password, :phone, :street, :postalCode, :city, :country);
         ";
 
+        $encryptedPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':first_name', $firstName);
         $stmt->bindParam(':last_name', $lastName);
         $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':password', $encryptedPassword);
         $stmt->bindParam(':phone', $phone);
         $stmt->bindParam(':street', $street);
         $stmt->bindParam(':postalCode', $postalCode);
