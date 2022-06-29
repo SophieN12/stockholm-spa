@@ -24,7 +24,7 @@ footer section{
 
 .footer-h2{
     font-family: var(--ff-rubrik);
-    font-size: var(--fs-rubrik);
+    font-size: var(--fs-underrubrik);
     color: var(--green);
 }
 
