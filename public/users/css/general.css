@@ -30,9 +30,21 @@
     font-family: lora;
 }
 
-h1 {
-    margin-bottom: 60px;
+.heading {
     font-family: var(--ff-rubrik);
+    color: var(--black);
+    font-size: var(--fs-underrubrik);
+    margin-bottom: 30px;
+    margin-top: 40px;
+    width: 70%;
+}
+
+.subheading {
+    font-family: var(--ff-rubrik);
+    color: var(--black);
+    font-size: var(--fs-bodytext);
+    margin-top: 40px;
+    width: 70%;
 }
 
 #form-inputs {
@@ -61,7 +73,7 @@ input:-webkit-autofill:active{
 
 #submitBtn {
     display: block;
-    width: 150px;
+    width: 170px;
     margin: 40px auto;
     margin-bottom: 0;
     background-color: var(--green);

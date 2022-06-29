@@ -6,9 +6,10 @@
 }
 
 #submitBtn,
-#deleteBtn {
+#deleteBtn,
+#logoutBtn {
     display: block;
-    width: 150px;
+    width: 170px;
     margin: 40px auto;
     margin-bottom: 0;
     background-color: var(--green);
@@ -18,13 +19,20 @@
     border-radius: 5px;
 }
 
-#deleteBtn {
-    background-color: #A56468;
+#logoutBtn {
     margin-top: 0;
+    background-color: #7a7b80;
+}
+
+#deleteBtn {
+    background-color: #D16D6D;
+    margin-top: 0;
+    margin-bottom: 40px;
 }
 
 #submitBtn:hover,
-#deleteBtn:hover {
+#deleteBtn:hover,
+#logoutBtn:hover {
     opacity: 0.8;
 }
 
@@ -52,4 +60,9 @@ select:-webkit-autofill:active{
 #right-side-form {
     grid-area: right-side;
     margin-left: 30px;
+}
+
+#login-link {
+    color: var(--black);
+    font-size: var(--fs-bodytext);
 }

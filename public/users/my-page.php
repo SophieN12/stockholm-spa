@@ -40,8 +40,8 @@
 </head>
 <body>
     <div id="container">
-        <h1>My page</h1>
-        <h3>Update user information</h3><br>
+        <h1 class="heading">My page</h1>
+        <h3 class="subheading">Update user information</h3><br>
         <p id="success"><?=$successMessage?></p>
         <p id="error"><?=$errorMessages?></p>
         <form id="update-user-form" action="" method="POST">
@@ -87,11 +87,11 @@
             </div>
                 <input id="submitBtn" type="submit" name="updateBtn" value="Update" id="submitBtn">
             </form><br>
+            <input id="logoutBtn" type="button" onClick="location.href='logout.php'" value="Logout"><br>
             <form action="" method="POST">
                 <input type="hidden" name="id" value="<?=htmlentities($_SESSION['id'])?>">
                 <input id="deleteBtn" type="submit" name="deleteBtn" value="Delete">
             </form>
-        <a href="logout.php">Logout</a>
     </div>
     <script src="js/update-user.js"></script>
 </body>

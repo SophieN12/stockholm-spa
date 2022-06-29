@@ -28,7 +28,7 @@
 </head>
 <body>
     <div id="container">
-        <h1>Create new user</h1>
+        <h1 class="heading">Create new user</h1>
         <p id="success"><?=$successMessage?></p>
         <p id="error"><?=$errorMessages?></p>
         <form id="add-user-form" action="" method="POST">
@@ -74,7 +74,7 @@
             </div>
             <input id="submitBtn" type="submit" name="createBtn" value="Create">
         </form><br>
-        <a href="login.php">Login page</a><br><br>
+        <a href="login.php" id="login-link">&#8592 Back to login</a><br><br>
     </div>
     <script src="js/add-user.js"></script>
 </body>

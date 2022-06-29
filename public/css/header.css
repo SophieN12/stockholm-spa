@@ -82,6 +82,10 @@ header{
     display: block;
 }
 
+#admin-link:focus {
+    outline: none;
+}
+
 button {
     border: none;
     background-color: var(--sand);

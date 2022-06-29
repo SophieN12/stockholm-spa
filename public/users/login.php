@@ -65,7 +65,7 @@
 </head>
 <body>
     <div id="container">
-        <h1>Login</h1>
+        <h1 class="heading">Login</h1>
         <p id="success"><?=$deletedUser?></p>
         <p id="success"><?=$logout?></p>
         <p id="error"><?=$mustLogin?></p>
@@ -81,7 +81,6 @@
             <input id="submitBtn" type="submit" name="loginBtn" value="Login">
         </form><br>
         <p id="sign-up">Not a member yet? <a id="sign-up-link" href="new-user.php">Sign up here!</a></p>
-        <a href="my-page.php">My page</a>
     </div>
 </body>
 
