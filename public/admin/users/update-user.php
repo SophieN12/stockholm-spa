@@ -14,7 +14,7 @@ $street		="";
 $postal_code="";
 $city		="";
 $country	="";
-// Update user with validation
+
 if(isset($_POST['updateUserBtn'])) {
 
 	$first_name		=trim($_POST['first_name']);
@@ -76,16 +76,6 @@ if(isset($_POST['updateUserBtn'])) {
 		";
 	}
 }
-
-//fetch specific user
-// $sql = "
-//     SELECT * FROM users
-//     WHERE id =:id
-// ";
-
-// $stmt = $pdo->prepare($sql);
-// $stmt->bindParam(':id', $_GET['userId']);
-// $stmt->execute();
 
 $user = $useradminDbHandler->fetchSpecificUser();
 
