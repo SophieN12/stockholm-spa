@@ -28,7 +28,9 @@
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
     <?php foreach($_SESSION['cartItems'] as $cartId => $cartItem): ?>
       <div class="cart-detail row">
-        <img src="../admin/products/<?=$cartItem['img_url']?>" width="100">
+        <img src= <?php if ($pageTitle == "Admin Products") {echo $cartItem['img_url'];} 
+                        else if ($pageTitle == "Admin Users"){ echo "../products/". $cartItem['img_url'];}
+                        else {echo "../admin/products/" . $cartItem['img_url'];}?> width="100">
         <div class="cart-detail-product">
           <p><?=$cartItem['title']?></p>
           <span class="cart-price"><?=$cartItem['price']?> SEK</span>
