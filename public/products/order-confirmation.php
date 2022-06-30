@@ -39,10 +39,10 @@ unset($_SESSION['cartItems']);
                 <?php foreach ($cartItems as $item) : ?>
                     <li>
                         <article class="confirmation-item-module">
-                            <img src="../admin/products/<?= $cartItem['img_url'] ?>" width="250">
+                            <img src="../admin/products/<?= $item['img_url'] ?>" width="250">
                             <div class="confirmation-item-details">
-                                <h4><?= $cartItem['title'] ?></h4>
-                                <p><span class="confirmation-detail-total"><?= $cartItem['price'] ?> SEK</span></p>
+                                <h4><?= $item['title'] ?></h4>
+                                <p><span class="confirmation-detail-total"><?= $item['price'] ?> SEK</span></p>
                             </div>
                         </article>
                     </li>
